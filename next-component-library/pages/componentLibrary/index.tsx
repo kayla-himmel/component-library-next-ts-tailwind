@@ -1,14 +1,14 @@
-import { GetStaticProps } from 'next'
-import Link from 'next/link'
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
 
-import { Component } from '../../interfaces'
-import { sampleComponentData } from '../../utils/sample-data'
-import Layout from '../../components/Layout'
-import List from '../../components/List'
+import { Component } from '../../interfaces';
+import { sampleComponentData } from '../../utils/sample-data';
+import Layout from '../../components/Layout';
+import List from '../../components/List';
 
 type Props = {
-  items: Component[]
-}
+  items: Component[];
+};
 
 const WithStaticProps = ({ items }: Props) => (
   <Layout title="componentLibrary List | Next.js + TypeScript Example">
@@ -24,14 +24,14 @@ const WithStaticProps = ({ items }: Props) => (
       </Link>
     </p>
   </Layout>
-)
+);
 
 export const getStaticProps: GetStaticProps = async () => {
   // Example for including static props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.
-  const items: Component[] = sampleComponentData
-  return { props: { items } }
-}
+  const items: Component[] = sampleComponentData;
+  return { props: { items } };
+};
 
-export default WithStaticProps
+export default WithStaticProps;

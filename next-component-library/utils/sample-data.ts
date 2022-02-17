@@ -1,4 +1,4 @@
-import { Component } from '../interfaces'
+import { Component } from '../interfaces';
 
 /** Dummy component data. */
 export const sampleComponentData: Component[] = [
@@ -6,4 +6,4 @@ export const sampleComponentData: Component[] = [
   { name: 'Button' },
   { name: 'Carousel' },
   { name: 'Modal' },
-]
+];

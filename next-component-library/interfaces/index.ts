@@ -5,5 +5,5 @@
 // import { Component } from 'path/to/interfaces';
 
 export type Component = {
-  name: string
-}
+  name: string;
+};

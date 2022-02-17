@@ -1,4 +1,8 @@
 {
   "editor.defaultFormatter": "vscode.typescript-language-features",
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "css.validate": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

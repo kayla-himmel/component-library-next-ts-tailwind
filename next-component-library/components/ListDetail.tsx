@@ -1,15 +1,15 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import { Component } from '../interfaces'
+import { Component } from '../interfaces';
 
 type ListDetailProps = {
-  item: Component
-}
+  item: Component;
+};
 
 const ListDetail = ({ item: component }: ListDetailProps) => (
   <div>
     <h1>Detail for {component.name}</h1>
   </div>
-)
+);
 
-export default ListDetail
+export default ListDetail;
