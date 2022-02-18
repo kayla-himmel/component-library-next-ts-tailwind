@@ -4,5 +4,19 @@
   "css.validate": false,
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "scss.lint.boxModel": "warning",
+  "scss.lint.float": "warning",
+  "scss.lint.important": "warning",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "css",
+    "scss"
+  ]
 }
