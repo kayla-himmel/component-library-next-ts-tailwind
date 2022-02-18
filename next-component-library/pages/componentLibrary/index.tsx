@@ -11,18 +11,10 @@ type Props = {
 };
 
 const WithStaticProps = ({ items }: Props) => (
-  <Layout title="componentLibrary List | Next.js + TypeScript Example">
-    <h1>componentLibrary List</h1>
-    <p>
-      Example fetching data from inside <code>getStaticProps()</code>.
-    </p>
-    <p>You are currently on: /componentLibrary</p>
+  <Layout title="Component Library List | Next.js + TypeScript Example">
+    <h1 className="text-3xl font-bold underline">Component Library List</h1>
+    {/* Our actual list of components */}
     <List items={items} />
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
   </Layout>
 );
 

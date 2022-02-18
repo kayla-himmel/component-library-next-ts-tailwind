@@ -1,16 +1,21 @@
 import React from 'react';
-import Link from 'next/link';
-
+import { LinkComponent } from './Links/Link';
 import { Component } from '../interfaces';
+import { LinkTypes } from './Links/Link.interfaces';
 
 type Props = {
   data: Component;
 };
 
 const ListItem = ({ data }: Props) => (
-  <Link href="/componentLibrary/[name]" as={`/componentLibrary/${data.name}`}>
-    <a className="listItem">{data.name}</a>
-  </Link>
+  <LinkComponent
+    className="font-bold"
+    href="/componentLibrary/[name]"
+    type={LinkTypes.LINK}
+    as={`/componentLibrary/${data.name}`}
+  >
+    {data.name}
+  </LinkComponent>
 );
 
 export default ListItem;
