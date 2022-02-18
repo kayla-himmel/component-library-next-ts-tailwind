@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { A11yText } from '../components/A11yText/A11yText';
 import Layout from '../components/Layout';
 import { LinkComponent } from '../components/Links/Link';
 import { LinkTypes } from '../components/Links/Link.interfaces';
@@ -11,13 +12,15 @@ const IndexPage = () => (
       <Link href="/about">
         <a>About</a>
       </Link>
+      {/* Button example */}
       <LinkComponent
         href="/"
         type={LinkTypes.BUTTON}
         onClick={() => alert('hey!')}
-        children={alertText}
         className="bg-gray-300 p-4 border-black"
-      />
+      >
+        <A11yText srText={alertText} visualText={alertText} />
+      </LinkComponent>
     </p>
   </Layout>
 );
