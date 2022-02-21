@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import LinkComponentProps, { LinkTypes } from './Link.interfaces';
+import ButtonProps, { LinkTypes } from './Button.interfaces';
 
-export const LinkComponent: React.FC<LinkComponentProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   href,
   as,
   children,

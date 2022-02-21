@@ -1,9 +1,10 @@
 import { Component } from '../interfaces';
 
-/** Dummy component data. */
+/* Used to create the component list */
 export const sampleComponentData: Component[] = [
   { name: 'Card' },
   { name: 'Button' },
   { name: 'Carousel' },
   { name: 'Modal' },
+  { name: 'test' },
 ];
