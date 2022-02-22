@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const ButtonPrimary = Template.bind({});
 ButtonPrimary.args = {
   children: 'Click Me',
-  href: '',
+  href: '/',
   className: 'bg-green-100 p-4',
   type: LinkTypes.BUTTON,
 };

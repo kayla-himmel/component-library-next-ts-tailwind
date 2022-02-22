@@ -6,6 +6,9 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    'storybook-addon-next',
+    'storybook-addon-next-router',
+    '@storybook/addon-docs',
     {
       /**
        * Fix Storybook issue with PostCSS@8
