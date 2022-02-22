@@ -1,10 +1,10 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-import { Component } from '../../interfaces';
-import { sampleComponentData } from '../../utils/sample-data';
+import { Component } from '../../../interfaces';
+import { sampleComponentData } from '../../../utils/sample-data';
 import Layout from '../../components/Layout';
 import ListDetail from '../../components/ListDetail';
-import { instanceOfErrorResponse } from '../../utils/helper';
+import { instanceOfErrorResponse } from '../../../utils/helper';
 
 type Props = {
   item?: Component;

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { instanceOfErrorResponse } from '../../../utils/helper';
-import { sampleComponentData } from '../../../utils/sample-data';
+import { instanceOfErrorResponse } from '../../../../utils/helper';
+import { sampleComponentData } from '../../../../utils/sample-data';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   try {

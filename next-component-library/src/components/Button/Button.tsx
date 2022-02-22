@@ -9,7 +9,7 @@ export const Button: React.FC<ButtonProps> = ({
   type,
   onClick,
   onKeyDown,
-  className,
+  className = 'font-bold bg-green-100',
   disabled = false,
 }) => {
   return (

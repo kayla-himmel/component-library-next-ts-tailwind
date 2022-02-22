@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, Meta } from '@storybook/react';
-import { Button } from '../components/Button/Button';
-import { LinkTypes } from '../components/Button/Button.interfaces';
+import { Button } from './Button';
+import { LinkTypes } from './Button.interfaces';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -21,15 +21,16 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 // Button example in Storybook
 export const ButtonPrimary = Template.bind({});
 ButtonPrimary.args = {
-  label: 'Click Me',
+  children: 'Click Me',
   href: '',
+  className: 'bg-green-100 p-4',
   type: LinkTypes.BUTTON,
 };
 
 // Link example in Storybook
 export const LinkPrimary = Template.bind({});
 LinkPrimary.args = {
-  label: 'Click to learn more',
+  children: 'Click to learn more',
   type: LinkTypes.LINK,
   href: '/about',
 };
