@@ -1,21 +1,21 @@
 import React from 'react';
-import { LinkComponent } from './Links/Link';
-import { Component } from '../interfaces';
-import { LinkTypes } from './Links/Link.interfaces';
+import { Button } from './Button/Button';
+import { Component } from '../../interfaces';
+import { LinkTypes } from './Button/Button.interfaces';
 
 type Props = {
   data: Component;
 };
 
 const ListItem = ({ data }: Props) => (
-  <LinkComponent
+  <Button
     className="font-bold"
     href="/componentLibrary/[name]"
     type={LinkTypes.LINK}
     as={`/componentLibrary/${data.name}`}
   >
     {data.name}
-  </LinkComponent>
+  </Button>
 );
 
 export default ListItem;

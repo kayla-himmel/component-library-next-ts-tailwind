@@ -1,15 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
-import LinkComponentProps, { LinkTypes } from './Link.interfaces';
+import ButtonProps, { LinkTypes } from './Button.interfaces';
 
-export const LinkComponent: React.FC<LinkComponentProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   href,
   as,
   children,
   type,
   onClick,
   onKeyDown,
-  className,
+  className = 'font-bold bg-green-100',
   disabled = false,
 }) => {
   return (

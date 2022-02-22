@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
-// import Link from 'next/link';
-import { LinkComponent } from './Links/Link';
+import { Button } from './Button/Button';
 import Head from 'next/head';
-import { LinkTypes } from './Links/Link.interfaces';
+import { LinkTypes } from './Button/Button.interfaces';
+import { Modal } from './Modal/Modal';
 
 type Props = {
   children?: ReactNode;
@@ -18,10 +18,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </Head>
     <header>
       <nav>
-        <LinkComponent href="/" type={LinkTypes.LINK} children="Home" />
-        <LinkComponent href="/about" type={LinkTypes.LINK} children="About" />
-        <LinkComponent href="/componentLibrary" type={LinkTypes.LINK} children="Component Library List" />
-        <LinkComponent href="/api/componentLibrary/library" type={LinkTypes.LINK} children="Component Library API" />
+        <Button href="/" type={LinkTypes.LINK} children="Home" />
+        <Button href="/about" type={LinkTypes.LINK} children="About" />
+        <Button href="/componentLibrary" type={LinkTypes.LINK} children="Component Library List" />
+        <Button href="/api/componentLibrary/library" type={LinkTypes.LINK} children="Component Library API" />
       </nav>
     </header>
     {children}
@@ -29,6 +29,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <hr />
       <span>I am here to stay (Footer)</span>
     </footer>
+    <div id="modalRoot" />
   </div>
 );
 
