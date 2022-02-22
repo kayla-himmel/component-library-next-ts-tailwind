@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import { Button } from '../components/Button/Button';
+import { LinkTypes } from '../components/Button/Button.interfaces';
 import Layout from '../components/Layout';
 
 const AboutPage = () => (
@@ -6,9 +7,9 @@ const AboutPage = () => (
     <h1>About</h1>
     <p>This is the about page</p>
     <p>
-      <Link href="/">
+      <Button type={LinkTypes.LINK} href="/">
         <a>Go home</a>
-      </Link>
+      </Button>
     </p>
   </Layout>
 );
