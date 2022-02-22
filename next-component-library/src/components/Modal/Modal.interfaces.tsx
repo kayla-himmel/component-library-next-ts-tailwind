@@ -1,3 +1,7 @@
 import { HTMLAttributes } from 'react';
 
-export type ModalProps = HTMLAttributes<HTMLDivElement>;
+export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
+  show: boolean;
+  onClose: () => void;
+  title?: string;
+}
