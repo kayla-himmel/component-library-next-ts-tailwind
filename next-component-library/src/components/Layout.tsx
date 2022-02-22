@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { Button } from './Button/Button';
 import Head from 'next/head';
 import { LinkTypes } from './Button/Button.interfaces';
+import { Modal } from './Modal/Modal';
 
 type Props = {
   children?: ReactNode;
@@ -28,6 +29,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <hr />
       <span>I am here to stay (Footer)</span>
     </footer>
+    <div id="modalRoot" />
   </div>
 );
 

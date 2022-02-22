@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './Button/Button';
-import { Component } from '../interfaces';
+import { Component } from '../../interfaces';
 import { LinkTypes } from './Button/Button.interfaces';
 
 type Props = {

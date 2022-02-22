@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 
-import { Component } from '../../interfaces';
-import { sampleComponentData } from '../../utils/sample-data';
+import { Component } from '../../../interfaces';
+import { sampleComponentData } from '../../../utils/sample-data';
 import Layout from '../../components/Layout';
 import List from '../../components/List';
 
