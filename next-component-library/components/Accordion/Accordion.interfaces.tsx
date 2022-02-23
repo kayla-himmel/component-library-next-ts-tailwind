@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
-  sectionId: string;
+export interface AccordionProps {
+  title: React.ReactNode;
+  content: React.ReactNode;
 }
