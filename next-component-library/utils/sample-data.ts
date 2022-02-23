@@ -6,5 +6,5 @@ export const sampleComponentData: Component[] = [
   { name: 'Button' },
   { name: 'Carousel' },
   { name: 'Modal' },
-  { name: 'test' },
+  { name: 'Accordion' },
 ];

@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button } from '../Button/Button';
 import Image from 'next/image';
-import { LinkTypes } from '../Button/Button.interfaces';
 import { AccordionProps } from './Accordion.interfaces';
 
 export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
@@ -20,9 +18,9 @@ export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
 
   // swap + and - sign based on whether the current section is active or not
   const changeIcon = active ? (
-    <Image src="/assets/iconMinusSign.svg" alt="Close this accordion section" />
+    <Image width="44" height="44" src="/assets/iconMinusSign.svg" alt="Close this accordion section" />
   ) : (
-    <Image src="/assets/iconPlusSign.svg" alt="Open this accordion section" />
+    <Image width="44" height="44" src="/assets/iconPlusSign.svg" alt="Open this accordion section" />
   );
 
   return (
