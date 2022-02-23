@@ -3,7 +3,8 @@ import { Button } from './Button/Button';
 import Head from 'next/head';
 import { LinkTypes } from './Button/Button.interfaces';
 import { Modal } from './Modal/Modal';
-import { Accordion } from './Accordion/Accordion';
+import { AccordionItem } from './Accordion/AccordionItem';
+import { AccordionWrapper } from './Accordion/AccordionWrapper';
 
 type Props = {
   children?: ReactNode;
@@ -31,7 +32,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         </nav>
       </header>
       {children}
-      <Accordion title="Accordion Title" content={contentP} />
+      <AccordionWrapper>
+        <AccordionItem title="Section 1" content={contentP} />
+        <AccordionItem title="Section 2" content={contentP} />
+      </AccordionWrapper>
       <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
         Open Modal
       </Button>
