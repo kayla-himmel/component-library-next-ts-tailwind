@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
-import { ComponentStory, ComponentStoryFn, Meta } from '@storybook/react';
+import React, { useState } from 'react';
+import { ComponentStoryFn, Meta } from '@storybook/react';
 import { Modal } from './Modal';
-import { ModalProps } from './Modal.interfaces';
 import { Button } from '../Button/Button';
 import { LinkTypes } from '../Button/Button.interfaces';
 
@@ -35,6 +34,7 @@ const Template: ComponentStoryFn<typeof Modal> = (args) => {
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
             deserunt mollit anim id est laborum."
           </p>
+          <Button href="/test" type={LinkTypes.BUTTON} children="Test" />
         </div>
       </Modal>
       <div id="modal-root"></div>

@@ -23,7 +23,6 @@ export const ButtonPrimary = Template.bind({});
 ButtonPrimary.args = {
   children: 'Click Me',
   href: '/',
-  className: 'bg-green-100 p-4',
   type: LinkTypes.BUTTON,
 };
 

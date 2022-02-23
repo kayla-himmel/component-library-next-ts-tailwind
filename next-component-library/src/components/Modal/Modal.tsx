@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 
-export const Modal: React.FC<ModalProps> = ({ show, onClose, title, children }) => {
+export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, children }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -46,11 +46,11 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, title, children }) 
       ref={modalRef}
     >
       <header className="modal_header flex flex-row justify-between flex-nowrap justify-items-start">
-        {title && <h2>{title}</h2>}
+        {title && <h2 className={titleClass && titleClass}>{title}</h2>}
         <Button
           type={LinkTypes.BUTTON}
           href="/"
-          className="p-4 -mt-4 -mr-4 flex justify-center items-center"
+          className="py-4 px-4 -mt-4 -mr-4 flex justify-center items-center border-0"
           onClick={onClose}
         >
           <Image src="/assets/iconCloseButton.svg" height={24} width={24} alt="close modal button" />
