@@ -40,32 +40,33 @@ const contentP = (
 const accordionData = [
   {
     title: 'Section 1',
-    content: 'Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Quam elementum pulvinar etiam non',
+    content:
+      'Duis convallis convallis tellus id interdum velit laoreet id. Condimentum mattis pellentesque id nibh tortor id aliquet lectus. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Tempus egestas sed sed risus pretium quam. Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Quam elementum pulvinar etiam non',
   },
   {
-    title: 'Section 1',
-    content: 'Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Quam elementum pulvinar etiam non',
-  },
-  {
-    title: 'Section 1',
-    content: 'Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Quam elementum pulvinar etiam non',
+    title: 'Section 2',
+    content: 'Yo fringilla est ullamcorper eget nulla facilisi etiam dignissim. Quam elementum pulvinar etiam non',
   },
 ];
 
-const mapChildren = () => {
-  accordionData.map((item, index) => <AccordionItem key={`item ${index}`} title={item.title} content={item.content} />);
-};
+const mapChildren = accordionData.map((item, index) => (
+  <AccordionItem key={`${item.title}-${index}`} title={item.title} content={item.content} />
+));
 
-const Template: ComponentStoryFn<typeof AccordionWrapper> = (args) => {
+const SingleItemTemplate: ComponentStoryFn<typeof AccordionWrapper> = (args) => {
   return <AccordionWrapper>{args}</AccordionWrapper>;
 };
 
-export const AccordionWithOneSection = Template.bind({});
+const MultiItemTemplate: ComponentStoryFn<typeof AccordionWrapper> = () => {
+  return <AccordionWrapper>{mapChildren}</AccordionWrapper>;
+};
+
+export const AccordionWithOneSection = SingleItemTemplate.bind({});
 AccordionWithOneSection.args = {
   ...(<AccordionItem title="Accordion with 1 Section" content={contentP} />),
 };
 
-export const AccordionWithTwoSections = Template.bind({});
+export const AccordionWithTwoSections = MultiItemTemplate.bind({});
 AccordionWithTwoSections.args = {
   mapChildren,
 };

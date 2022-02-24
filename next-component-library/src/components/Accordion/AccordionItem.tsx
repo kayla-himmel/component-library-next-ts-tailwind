@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { AccordionProps } from './Accordion.interfaces';
+import { Button } from '../Button/Button';
+import { LinkTypes } from '../Button/Button.interfaces';
 
 export const AccordionItem: React.FC<AccordionProps> = ({ title, content }) => {
   // state of current section (defaults to false, which means closed)
@@ -23,15 +25,18 @@ export const AccordionItem: React.FC<AccordionProps> = ({ title, content }) => {
 
   return (
     <div className="flex flex-col">
-      <button
-        className="py-6 box-border appearance-none cursor-pointer focus:outline-none flex items-center justify-between"
+      <Button
+        className="py-6 px-0 box-border appearance-none border-0 flex items-center justify-between"
         onClick={toggleAccordion}
+        href="/"
+        type={LinkTypes.BUTTON}
+        ariaExpanded={active}
       >
-        <p className="inline-block text-footnote light">{title}</p>
+        <h3 className="inline-block text-4xl font-bold">{title}</h3>
         {changeIcon}
-      </button>
+      </Button>
       <div ref={contentSpace} className="overflow-auto transition-max-height duration-700 ease-in-out" hidden={!active}>
-        <div className="pb-10">{content}</div>
+        <div className="pb-10 pr-6">{content}</div>
       </div>
     </div>
   );
