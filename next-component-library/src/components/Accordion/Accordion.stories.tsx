@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { AccordionItem } from './AccordionItem';
 import { AccordionWrapper } from './AccordionWrapper';
-import ListItem from '../ListItem';
 
 export default {
   title: 'Components/Accordion',
@@ -24,16 +23,7 @@ const contentP = (
     Ullamcorper sit amet risus nullam eget felis eget. Viverra orci sagittis eu volutpat odio facilisis mauris. Aliquet
     sagittis id consectetur purus. Urna nec tincidunt praesent semper feugiat nibh sed. Congue mauris rhoncus aenean vel
     elit scelerisque. Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Quam elementum pulvinar etiam non
-    quam lacus suspendisse faucibus interdum. Bibendum arcu vitae elementum curabitur vitae nunc sed. Nisl rhoncus
-    mattis rhoncus urna neque viverra. Sociis natoque penatibus et magnis dis parturient montes nascetur. Risus quis
-    varius quam quisque id. Sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Tristique risus nec
-    feugiat in. Ante in nibh mauris cursus mattis molestie a iaculis at. A condimentum vitae sapien pellentesque
-    habitant morbi tristique senectus. Integer feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Mus
-    mauris vitae ultricies leo integer. Facilisis volutpat est velit egestas dui id ornare. Mauris cursus mattis
-    molestie a iaculis at erat pellentesque. Nulla aliquet porttitor lacus luctus accumsan. Volutpat est velit egestas
-    dui id. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Nulla pellentesque dignissim enim sit.
-    Dolor sit amet consectetur adipiscing elit ut aliquam purus. Metus dictum at tempor commodo ullamcorper a lacus.
-    Elementum sagittis vitae et leo duis ut diam quam. Mi quis hendrerit dolor magna eget.
+    quam lacus suspendisse faucibus interdum.
   </p>
 );
 
