@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { LinkTypes } from '../Button/Button.interfaces';
 import { ModalProps } from './Modal.interfaces';
 import ReactDOM from 'react-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import React from 'react';
 
 export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, children }) => {
@@ -11,17 +11,23 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, 
 
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const backDropCloseHandler = (e) => {
-    if (modalRef && !modalRef?.current?.contains(e.target)) {
-      onClose();
-    }
-  };
+  const backDropCloseHandler = useCallback(
+    (e) => {
+      if (modalRef && !modalRef?.current?.contains(e.target)) {
+        onClose;
+      }
+    },
+    [onClose]
+  );
 
-  const escapeKeyCloseHandler = (e) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-  };
+  const escapeKeyCloseHandler = useCallback(
+    (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    },
+    [onClose]
+  );
 
   useEffect(() => {
     setIsBrowser(true);
@@ -36,7 +42,7 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, 
       window.removeEventListener('keydown', escapeKeyCloseHandler);
       window.removeEventListener('click', backDropCloseHandler);
     };
-  }, [escapeKeyCloseHandler, backDropCloseHandler]);
+  }, [escapeKeyCloseHandler, backDropCloseHandler, show]);
 
   const ModalContent = show ? (
     <div

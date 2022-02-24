@@ -11,6 +11,7 @@ export const Button: React.FC<ButtonProps> = ({
   onKeyDown,
   className,
   disabled = false,
+  ariaExpanded,
 }) => {
   return (
     <Link href={href} as={as}>
@@ -23,6 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
           onClick={onClick}
           onKeyDown={onKeyDown}
           disabled={disabled}
+          aria-expanded={ariaExpanded}
         >
           {children}
         </button>

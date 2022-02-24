@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
 
 import { Component } from '../../../interfaces';
 import { sampleComponentData } from '../../../utils/sample-data';
