@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import Image from 'next/image';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode, useState } from 'react';
+import { pageMockData } from '../../../utils/sample-data';
 import { Button } from '../Button/Button';
 import { LinkTypes, PaginationTypes } from '../Button/Button.interfaces';
 import PaginationProps from './Pagination.interfaces';
@@ -7,47 +9,51 @@ export const Pagination: React.FC<PaginationProps> = ({ onClick }) => {
   // current page is active
   const [active, setActive] = useState(false);
 
-  // disable previous button if user is viewing first page and disable next button if user is viewing last page
-  // function disableNavButtons() {
-  // if (key < 0) {
-  //   setActive(!active);
-  // } else {
-  //   setActive(active)
-  // }
+  const displayPageContent = (itemsPerPage, dataArray) => {
+    const pageDataLength = dataArray.length;
 
-  // empty array to hold generated page content
-  const contentArray = [];
+    //total number of pages (rounded up to nearest interger)
+    const totalPages = Math.ceil(pageDataLength / itemsPerPage);
 
-  // map through data in utils/helpers/sample-data.ts file to show 6 results per page
-  // const createPageContent = () => {
-  //   const buildArray = () => {
-  //     for (let i = 0; i <= 25; i++) {
-  //       return <div key={i}>Div ${i}</div>;
-  //     }
-  //   };
+    // empty array to hold generated page content
+    let contentArray: ReactNode[] = [];
+    // init div that is pushed to array
+    let contentDiv: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-  //   return contentArray.push(buildArray);
-  // };
+    var newDataArray = dataArray.reduce((resultArray, item, index) => {
+      const chunkIndex = Math.floor(index / itemsPerPage);
 
-  const displayPageContent = () => {
-    const resultsMax = 6;
-    const buildArray = () => {
-      for (let i = 0; i <= 25; i++) {
-        return <div id={`id-${i}`}>Div ${i}</div>;
+      if (!resultArray[chunkIndex]) {
+        resultArray[chunkIndex] = []; // start a new chunk
       }
-    };
-    // eslint-disable-next-line no-console
-    console.log(buildArray(), 'buildArray');
-    contentArray.push(buildArray);
-    // eslint-disable-next-line no-console
-    console.log(contentArray, 'contentArray');
-    const pageResults = contentArray.slice(0, resultsMax).map((a) => {
-      <div key={a.id}>Item ${a}</div>;
+
+      resultArray[chunkIndex].push(item);
+
+      return resultArray;
+    }, []);
+
+    //set page items into a new array based on the maxResultsPerPage
+    const mapChildren = newDataArray.map((arrayItem, index) => {
+      console.log(arrayItem, 'arrayItem');
+      return (
+        <div key={`id-${index + 1}`} id={`id-${index + 1}`}>
+          {arrayItem.map((item, index) => {
+            const imageSrc = item.image;
+            const imageAlt = item.caption;
+            return (
+              <div className="content_card" key={`${item}-${index}`}>
+                <Image src={imageSrc} height={150} width={150} alt={imageAlt} />
+                <caption>{imageAlt}</caption>
+              </div>
+            );
+          })}
+        </div>
+      );
     });
 
     return (
-      <div className="pageContent" id="page-1">
-        {pageResults}
+      <div className="pageContent" id={`page-`}>
+        {mapChildren}
       </div>
     );
   };
@@ -70,18 +76,13 @@ export const Pagination: React.FC<PaginationProps> = ({ onClick }) => {
     }
   }
 
-  displayPageContent();
-  // eslint-disable-next-line no-console
-  console.log(contentArray, 'contentArray');
-
   return (
     <div className="pagination">
       <nav>
         <Button type={LinkTypes.BUTTON} href="/" id={PaginationTypes.PREVIOUS} onClick={goToPrevious} disabled={active}>
           Previous
         </Button>
-        <div>{contentArray}</div>
-        {displayPageContent}
+        <div>{displayPageContent(6, pageMockData)}</div>
         <Button type={LinkTypes.BUTTON} href="/" id={PaginationTypes.NEXT} onClick={goToNext} disabled={active}>
           Next
         </Button>
