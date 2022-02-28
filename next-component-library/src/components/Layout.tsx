@@ -5,6 +5,7 @@ import { LinkTypes } from './Button/Button.interfaces';
 import { Modal } from './Modal/Modal';
 import { AccordionItem } from './Accordion/AccordionItem';
 import { AccordionWrapper } from './Accordion/AccordionWrapper';
+import { Pagination } from './Pagination/Pagination';
 
 type Props = {
   children?: ReactNode;
@@ -39,6 +40,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
         Open Modal
       </Button>
+      <Pagination onClick={} />
       <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">
         <div>
           <h3>Modal Body</h3>
