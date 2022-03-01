@@ -1,4 +1,3 @@
-import { JSXElementConstructor } from 'react';
 import { Component } from '../interfaces';
 
 /* Used to create the component list */
