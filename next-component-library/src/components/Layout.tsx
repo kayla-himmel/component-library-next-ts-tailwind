@@ -7,7 +7,7 @@ import { LinkTypes } from './Button/Button.interfaces';
 import { Modal } from './Modal/Modal';
 import { AccordionItem } from './Accordion/AccordionItem';
 import { AccordionWrapper } from './Accordion/AccordionWrapper';
-import { Pagination } from './Pagination/Pagination';
+// import { Pagination } from './Pagination/Pagination';
 
 type Props = {
   children?: ReactNode;

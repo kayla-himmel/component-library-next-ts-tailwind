@@ -1,70 +1,67 @@
 import Image from 'next/image';
-import { DetailedHTMLProps, HTMLAttributes, ReactNode, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../Button/Button';
+import { pageMockData } from '../../../utils/sample-data';
 import { LinkTypes, PaginationTypes } from '../Button/Button.interfaces';
 import PaginationProps from './Pagination.interfaces';
 
-export const Pagination: React.FC<PaginationProps> = ({ onClick }) => {
+export const Pagination: React.FC<PaginationProps> = ({ onClick, itemsPerPage, dataArray, startingPage }) => {
   // current page is active
   const [active, setActive] = useState(false);
 
-  const displayPageContent = (itemsPerPage, dataArray) => {
-    const pageDataLength = dataArray.length;
+  // set current page to the starting page
+  const [currentPage, setCurrentPage] = useState<number>(startingPage);
 
-    //total number of pages (rounded up to nearest interger)
-    const totalPages = Math.ceil(pageDataLength / itemsPerPage);
+  // create a new data array that contains chunks of array, pushing them into the resultArray
+  const createArrayOfArrays = dataArray.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / itemsPerPage);
 
-    // empty array to hold generated page content
-    const contentArray: ReactNode[] = [];
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = []; // start a new chunk of items
+    }
 
-    // init div that is pushed to array
-    let contentDiv: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+    resultArray[chunkIndex].push(item);
 
-    // create a new data array that contains chunks of array, pushing them into the resultArray
-    const newDataArray = dataArray.reduce((resultArray, item, index) => {
-      const chunkIndex = Math.floor(index / itemsPerPage);
+    return resultArray;
+    // eslint-disable-next-line no-console
+    console.log(resultArray);
+  }, []);
 
-      if (!resultArray[chunkIndex]) {
-        resultArray[chunkIndex] = []; // start a new chunk of items
-      }
+  // map through createArrayOfArrays and build the individual items, displaying an image and caption for each item in the array
+  const mapChildren = createArrayOfArrays.map((arrayItem, index) => {
+    const pageNumber = index + 1;
 
-      resultArray[chunkIndex].push(item);
+    const isCurrentPage = pageNumber === currentPage;
 
-      return resultArray;
-    }, []);
-
-    // map through newDataArray and build the individual items, displaying an image and caption for each item in the array
-    const mapChildren = newDataArray.map((arrayItem, index) => {
-      // eslint-disable-next-line no-console
-      console.log(arrayItem, 'arrayItem');
+    const createIndItems = arrayItem.map((item, index) => {
       return (
-        <div key={`id-${index + 1}`} id={`id-${index + 1}`}>
-          {arrayItem.map((item, index) => {
-            const imageSrc = item[arrayItem].image;
-            const imageAlt = item.caption;
-            return (
-              <div className="content_card" key={`${item}-${index}`}>
-                <Image src={imageSrc} height={150} width={150} alt={imageAlt} />
-                <caption>Caption: {imageAlt}</caption>
-              </div>
-            );
-          })}
+        <div className="content_card" key={`${item}-${index}`}>
+          <Image src={item.image} height={150} width={150} alt={item.caption} />
+          <p>Caption: {item.caption}</p>
         </div>
       );
     });
 
-    // return list of individual divs inside the .pageContent div
+    // chunks of items div
+    if (isCurrentPage) {
+      return (
+        <div className="pageContent" key={`id-${pageNumber}`} id={`page-${pageNumber}`}>
+          {createIndItems}
+        </div>
+      );
+    }
+
     return (
-      <div className="pageContent" id={`page-`}>
-        {mapChildren}
+      <div className="pageContent" key={`id-${pageNumber}`} id={`page-${pageNumber}`}>
+        {createIndItems}
       </div>
     );
-  };
+  });
 
   // click event logic for Previous button
   function goToPrevious() {
     if (!active) {
-      onClick();
+      // onClick(setCurrentPage);
       // return user to previous page of results
       // disableNavButtons();
     }
@@ -73,7 +70,7 @@ export const Pagination: React.FC<PaginationProps> = ({ onClick }) => {
   // click event logic for Next button
   function goToNext() {
     if (!active) {
-      onClick();
+      // onClick(setCurrentPage);
       // return user to next page of results
       // disableNavButtons();
     }
@@ -86,7 +83,7 @@ export const Pagination: React.FC<PaginationProps> = ({ onClick }) => {
           Previous
         </Button>
         <div className="content_wrapper grid grid-cols-3 justify-items-center">
-          {/* {displayPageContent(6, pageMockData)} */}
+          <div className="pageWrapper">{mapChildren}</div>
         </div>
         <Button type={LinkTypes.BUTTON} href="/" id={PaginationTypes.NEXT} onClick={goToNext} disabled={active}>
           Next
