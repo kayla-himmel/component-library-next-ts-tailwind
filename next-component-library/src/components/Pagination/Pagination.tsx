@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from '../Button/Button';
 import { LinkTypes, PaginationTypes } from '../Button/Button.interfaces';
 import PaginationProps from './Pagination.interfaces';
@@ -23,16 +23,9 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
 
   // map through createArrayOfArrays and build the individual items, displaying an image and caption for each item in the array
   const createContentWrappers = createArrayOfArrays.map((arrayItem, index) => {
-    
     const pageNumber = index + 1;
 
     const isCurrentPage = pageNumber === currentPage;
-
-    const pageNumberId = document.getElementById('id');
-
-    if (isCurrentPage) {
-      // set pageNumber as active
-    }
 
     const createIndItems = arrayItem.map((item, index) => {
       return (
@@ -43,7 +36,8 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
       );
     });
 
-    const makeWrapper = () => {
+    // chunks of items div that displays the items in the array of the array whose index matches the page number
+    if (isCurrentPage) {
       return (
         <div
           className="content_wrapper grid grid-cols-3 justify-items-center"
@@ -53,43 +47,47 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
           {createIndItems}
         </div>
       );
-    };
-
-    const showPageNumbers = createArrayOfArrays.map((item, index) => {
-      return (
-        <Button
-          ref={PageNumberRef}
-          type={LinkTypes.BUTTON}
-          href="/"
-          value={`${index + 1}`}
-          id={`${index + 1}`}
-          key={`page-${index + 1}`}
-          className={`page-${index + 1} border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-5`}
-          onClick={goToPage}
-          active={pageNumber === currentPage}
-          disabled={currentPage === createArrayOfArrays.length}
-        >
-          {index + 1}
-        </Button>
-      );
-    });
-    
-    // chunks of items div that displays the items in the array of the array whose index matches the page number
-    if (isCurrentPage) {
-      return (
-        makeWrapper();
-        showPageNumbers();
-      );
     }
   });
 
+  const showPageNumbers = createArrayOfArrays.map((item, index) => {
+    const pageNumber = index + 1;
+
+    const isCurrentPage = pageNumber === currentPage;
+
+    const pageNumberId = document.getElementById('id');
+
+    return (
+      <Button
+        type={LinkTypes.BUTTON}
+        href="/"
+        value={`${index + 1}`}
+        id={`${index + 1}`}
+        key={`page-${index + 1}`}
+        className={`page-${index + 1} border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-5`}
+        onClick={goToPage}
+        active={pageNumber === currentPage}
+        disabled={currentPage === createArrayOfArrays.length}
+      >
+        {index + 1}
+      </Button>
+    );
+  });
+
+  // chunks of items div that displays the items in the array of the array whose index matches the page number
+  // if (isCurrentPage) {
+  //   return showPageNumbers();
+  // }
+
   // set page number ref and call it into focus in the useEffect
-  const PageNumberRef = useRef(null); // React.createRef() might also work
+  // const PageNumberRef = useRef(null); // React.createRef() might also work
 
   // click event logic for actual page number buttons
-  function goToPage(event, x) {
-    const pageNumber = event.target.id;
+  function goToPage(event, id) {
     if (id === event.target.id) {
+      console.log(id, 'id');
+      console.log(event.target.id, 'event.target.id');
+
       setCurrentPage(id);
     }
   }
