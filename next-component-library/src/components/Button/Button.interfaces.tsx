@@ -17,5 +17,5 @@ export default interface ButtonProps extends LinkProps, HTMLAttributes<HTMLButto
   onClick?: () => void;
   onKeyDown?: () => void;
   ariaExpanded?: boolean;
-  id?: PaginationTypes.NEXT | PaginationTypes.PREVIOUS;
+  id?: PaginationTypes.NEXT | PaginationTypes.PREVIOUS | string;
 }
