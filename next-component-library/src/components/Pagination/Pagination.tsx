@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../Button/Button';
 import { LinkTypes, PaginationTypes } from '../Button/Button.interfaces';
 import PaginationProps from './Pagination.interfaces';
@@ -7,6 +7,11 @@ import PaginationProps from './Pagination.interfaces';
 export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray, startingPage }) => {
   // set current page to the starting page
   const [currentPage, setCurrentPage] = useState<number>(startingPage);
+
+  useEffect(() => {
+    // Update the currentPage when page number is clicked
+    // Redraw the chunk of items from the array of arrays that matches the currentPage
+  });
 
   // create a new data array that contains chunks of array, pushing them into the resultArray
   const createArrayOfArrays = dataArray.reduce((resultArray, item, index) => {
@@ -50,46 +55,30 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     }
   });
 
+  // build pagination and show current page in bold
   const showPageNumbers = createArrayOfArrays.map((item, index) => {
     const pageNumber = index + 1;
-
-    const isCurrentPage = pageNumber === currentPage;
-
-    const pageNumberId = document.getElementById('id');
 
     return (
       <Button
         type={LinkTypes.BUTTON}
         href="/"
-        value={`${index + 1}`}
         id={`${index + 1}`}
         key={`page-${index + 1}`}
-        className={`page-${index + 1} border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-5`}
+        className={`${
+          pageNumber === currentPage && 'active font-bold'
+        } border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-5`}
         onClick={goToPage}
-        active={pageNumber === currentPage}
-        disabled={currentPage === createArrayOfArrays.length}
       >
-        {index + 1}
+        {pageNumber}
       </Button>
     );
   });
 
-  // chunks of items div that displays the items in the array of the array whose index matches the page number
-  // if (isCurrentPage) {
-  //   return showPageNumbers();
-  // }
-
-  // set page number ref and call it into focus in the useEffect
-  // const PageNumberRef = useRef(null); // React.createRef() might also work
-
   // click event logic for actual page number buttons
-  function goToPage(event, id) {
-    if (id === event.target.id) {
-      console.log(id, 'id');
-      console.log(event.target.id, 'event.target.id');
-
-      setCurrentPage(id);
-    }
+  function goToPage(event) {
+    const newPage = parseInt(event.target.id);
+    setCurrentPage(newPage);
   }
 
   // click event logic for Previous button
@@ -151,7 +140,6 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
   TO-DO:
   - style active buttons
   - add ellipses for more than 3 pages (or whatever)
-  - add logic for clicking on actual page numbers that take you to that page
   - style component cards like the layout cards
   - make component more generic/reusable (grab item instead of item.image and item.caption)
   - check for keyboard/screen reader accessibility with our pagination nav
