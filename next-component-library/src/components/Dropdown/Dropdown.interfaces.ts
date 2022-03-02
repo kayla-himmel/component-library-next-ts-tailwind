@@ -3,7 +3,7 @@ export interface DropdownProps {
   title: string;
 }
 
-interface DropdownData {
-  id: string | number;
+export interface DropdownData {
+  id: string;
   label: string;
 }

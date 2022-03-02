@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DropdownProps } from './Dropdown.interfaces';
+import { DropdownData, DropdownProps } from './Dropdown.interfaces';
 
 const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
   const [isOpen, setOpen] = useState(false);
@@ -8,23 +8,27 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
 
   const toggleDropdown = () => setOpen(!isOpen);
 
-  const handleItemClick = (id) => {
-    selectedItem == id ? setSelectedItem(null) : setSelectedItem(id);
+  const handleItemClick = (id, item) => {
+    selectedItem === item ? setSelectedItem(null) : setSelectedItem(item);
   };
 
   return (
-    <div className="dropdown">
-      <div className="dropdown-header" onClick={toggleDropdown}>
+    <div className="dropdown border-2 rounded-sm w-100">
+      <button className="dropdown-header p-2 flex justify-between align-items-center" onClick={toggleDropdown}>
         {
           /*if selected item show its label, if not show the dropdown title */
-          selectedItem ? selectedItem.id : title
+          selectedItem ? selectedItem.label : title
         }
         <i className={`fa fa-chevron-right icon ${isOpen && 'open'}`}></i>
-      </div>
-      <div className={`dropdown-body ${isOpen && 'open'}`}>
+      </button>
+      <div className={`dropdown-body p-1 ${isOpen ? 'open block' : 'hidden'}`}>
         {items.map((item) => (
-          <div className="dropdown-item" onClick={(e) => handleItemClick(e.currentTarget.id)} id={item.id as string}>
-            <span className={`dropdown-item-dot ${item.id == selectedItem && 'selected'}`}>• </span>
+          <div
+            className={`dropdown-item p-2 hover:cursor-pointer ${item === selectedItem ? 'selected bg-slate-500' : ''}`}
+            onClick={(e) => handleItemClick(e.currentTarget.id, item)}
+            id={item.id as string}
+            key={`id-${item.id}`}
+          >
             {item.label}
           </div>
         ))}

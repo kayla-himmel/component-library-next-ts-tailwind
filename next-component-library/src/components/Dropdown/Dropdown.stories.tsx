@@ -8,9 +8,9 @@ export default {
 } as Meta;
 
 const sampleDropdownData = [
-  { id: 0, label: 'Istanbul, TR (AHL)' },
-  { id: 1, label: 'Paris, FR (CDG)' },
-  { id: 2, label: 'Columbus, OH (CMH)' },
+  { id: '0', label: 'Istanbul, TR (AHL)' },
+  { id: '1', label: 'Paris, FR (CDG)' },
+  { id: '2', label: 'Columbus, OH (CMH)' },
 ];
 
 const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;
