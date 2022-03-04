@@ -1,13 +1,12 @@
 import React, { ReactNode, useState } from 'react';
 import { Button } from './Button/Button';
 import Head from 'next/head';
-import { pageMockData } from '../../utils/sample-data';
-import Image from 'next/image';
+import { transformDataToHtml } from '../../utils/sample-data';
 import { LinkTypes } from './Button/Button.interfaces';
 import { Modal } from './Modal/Modal';
 import { AccordionItem } from './Accordion/AccordionItem';
 import { AccordionWrapper } from './Accordion/AccordionWrapper';
-// import { Pagination } from './Pagination/Pagination';
+import { Pagination } from './Pagination/Pagination';
 
 type Props = {
   children?: ReactNode;
@@ -19,21 +18,6 @@ const contentP =
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
   const [showModal, setShowModal] = useState(false);
-
-  // map through mock data to create individual items
-  const mapItems = pageMockData.map((index, item) => {
-    const imageSrc = pageMockData[item].image;
-    const imageAlt = pageMockData[item].caption;
-
-    return (
-      <div className="content_card" key={`${item}-${index}`}>
-        <Image src={imageSrc} height={150} width={150} alt={imageAlt} />
-        <caption>{imageAlt}</caption>
-      </div>
-    );
-  });
-
-  const displayPageDiv = <div className="content_wrapper grid grid-cols-3 justify-items-center">{mapItems}</div>;
 
   return (
     <div>
@@ -58,8 +42,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
         Open Modal
       </Button>
-      {displayPageDiv}
-      {/* <Pagination onClick={} /> */}
+      {/* {displayPageDiv} */}
+      <Pagination itemsPerPage={6} dataArray={transformDataToHtml()} startingPage={1} />
       <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">
         <div>
           <h3>Modal Body</h3>

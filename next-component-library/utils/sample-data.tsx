@@ -1,4 +1,5 @@
 import { Component } from '../interfaces';
+import Image from 'next/image';
 
 /* Used to create the component list */
 export const sampleComponentData: Component[] = [
@@ -13,6 +14,22 @@ interface MockDataPaginationType {
   image: string;
   caption: string;
 }
+
+// returns array with the html for each object--very specific to the pageMockData
+export const transformDataToHtml = () => {
+  const newItemArray = [];
+
+  pageMockData.map((item, index) => {
+    const newItem = (
+      <div key={index}>
+        <Image src={item.image} alt={item.caption} height={150} width={150} />
+        <p>{item.caption}</p>
+      </div>
+    );
+    newItemArray.push(newItem);
+  });
+  return newItemArray as [];
+};
 
 export const pageMockData: MockDataPaginationType[] = [
   {

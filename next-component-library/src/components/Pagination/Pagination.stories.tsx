@@ -1,5 +1,5 @@
 import { ComponentStory, Meta } from '@storybook/react';
-import { pageMockData } from '../../../utils/sample-data';
+import { transformDataToHtml } from '../../../utils/sample-data';
 import { Pagination } from './Pagination';
 
 export default {
@@ -20,6 +20,6 @@ const Template: ComponentStory<typeof Pagination> = (args) => <Pagination {...ar
 export const PaginationPrimary = Template.bind({});
 PaginationPrimary.args = {
   itemsPerPage: 6,
-  dataArray: pageMockData,
+  dataArray: transformDataToHtml(),
   startingPage: 1,
 };

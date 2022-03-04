@@ -1,17 +1,13 @@
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../Button/Button';
-import { LinkTypes, PaginationTypes } from '../Button/Button.interfaces';
+import { LinkTypes } from '../Button/Button.interfaces';
 import PaginationProps from './Pagination.interfaces';
 
 export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray, startingPage }) => {
   // set current page to the starting page
   const [currentPage, setCurrentPage] = useState<number>(startingPage);
-
-  useEffect(() => {
-    // Update the currentPage when page number is clicked
-    // Redraw the chunk of items from the array of arrays that matches the currentPage
-  });
+  const pageNumberLimit = 3;
 
   // create a new data array that contains chunks of array, pushing them into the resultArray
   const createArrayOfArrays = dataArray.reduce((resultArray, item, index) => {
@@ -35,8 +31,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     const createIndItems = arrayItem.map((item, index) => {
       return (
         <div className="content_card" key={`${item}-${index}`}>
-          <Image src={item.image} height={150} width={150} alt={item.caption} />
-          <p>Caption: {item.caption}</p>
+          {item}
         </div>
       );
     });
@@ -55,25 +50,48 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     }
   });
 
-  // build pagination and show current page in bold
+  // build pagination with hover and active styles
   const showPageNumbers = createArrayOfArrays.map((item, index) => {
     const pageNumber = index + 1;
+    const firstPage = 1;
+    const rangeSides = Math.floor(pageNumberLimit / 2);
+    const minPage = currentPage === 3 ? currentPage - rangeSides - 1 : currentPage - rangeSides;
+    const maxPage = currentPage === firstPage ? currentPage + pageNumberLimit - 1 : currentPage + rangeSides;
 
-    return (
-      <Button
-        type={LinkTypes.BUTTON}
-        href="/"
-        id={`${index + 1}`}
-        key={`page-${index + 1}`}
-        className={`${
-          pageNumber === currentPage && 'active font-bold'
-        } border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-5`}
-        onClick={goToPage}
-      >
-        {pageNumber}
-      </Button>
-    );
+    function createRange(min, max) {
+      const range = [];
+      for (let i = min; i <= max; i++) {
+        range.push(i);
+      }
+      return range;
+    }
+
+    if (createRange(minPage, maxPage).includes(pageNumber)) {
+      return (
+        <Button
+          type={LinkTypes.BUTTON}
+          href="/"
+          id={`${pageNumber}`}
+          key={`page-${pageNumber}`}
+          className={`${
+            pageNumber === currentPage && 'active font-bold bg-black text-gray-100'
+          } px-3 border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-3 hover:text-black`}
+          onClick={goToPage}
+        >
+          {pageNumber}
+        </Button>
+      );
+    }
   });
+
+  // make last shown page number
+  function showPastPageIncrement() {
+    setCurrentPage(currentPage - 2);
+  }
+
+  function showNextPageIncrement() {
+    setCurrentPage(currentPage + 2);
+  }
 
   // click event logic for actual page number buttons
   function goToPage(event) {
@@ -95,13 +113,13 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     <>
       {createContentWrappers}
       {createArrayOfArrays.length > 0 && (
-        <div className="pagination mt-8">
-          <nav className="flex justify-center items-center space-x-1">
+        <div className="pagination-wrapper flex justify-center mt-8">
+          <nav className="pagination-nav flex justify-center items-center space-x-1 w-80">
             <Button
               type={LinkTypes.BUTTON}
               href="/"
-              id={PaginationTypes.PREVIOUS}
-              className="border-0 flex"
+              id="previous"
+              className="border-0 flex px-3"
               onClick={goToPrevious}
               disabled={currentPage === 1}
             >
@@ -112,11 +130,35 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                 alt="Go back to previous page of results"
               />
             </Button>
-            <div className="flex space-x-1">{showPageNumbers}</div>
+            <div className="pagination-numbers flex space-x-1">
+              {currentPage > pageNumberLimit && (
+                <Button
+                  type={LinkTypes.BUTTON}
+                  href="/"
+                  id="next"
+                  className="border-0 flex px-3"
+                  onClick={showPastPageIncrement}
+                >
+                  &hellip;
+                </Button>
+              )}
+              {showPageNumbers}
+              {createArrayOfArrays.length > pageNumberLimit && currentPage < createArrayOfArrays.length - 2 && (
+                <Button
+                  type={LinkTypes.BUTTON}
+                  href="/"
+                  id="previous"
+                  className="border-0 flex"
+                  onClick={showNextPageIncrement}
+                >
+                  &hellip;
+                </Button>
+              )}
+            </div>
             <Button
               type={LinkTypes.BUTTON}
               href="/"
-              id={PaginationTypes.NEXT}
+              id="next"
               className="border-0 flex"
               onClick={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
@@ -135,12 +177,3 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     </>
   );
 };
-
-/*
-  TO-DO:
-  - style active buttons
-  - add ellipses for more than 3 pages (or whatever)
-  - style component cards like the layout cards
-  - make component more generic/reusable (grab item instead of item.image and item.caption)
-  - check for keyboard/screen reader accessibility with our pagination nav
-*/
