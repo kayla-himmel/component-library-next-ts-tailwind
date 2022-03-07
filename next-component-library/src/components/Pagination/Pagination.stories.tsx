@@ -11,6 +11,21 @@ export default {
         disable: true,
       },
     },
+    itemsPerPage: {
+      table: {
+        disable: true,
+      },
+    },
+    dataArray: {
+      table: {
+        disable: true,
+      },
+    },
+    startingPage: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
