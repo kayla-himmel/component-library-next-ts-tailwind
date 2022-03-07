@@ -55,7 +55,8 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     const pageNumber = index + 1;
     const firstPage = 1;
     const rangeSides = Math.floor(pageNumberLimit / 2);
-    const minPage = currentPage === 3 ? currentPage - rangeSides - 1 : currentPage - rangeSides;
+    const minPage =
+      currentPage === createArrayOfArrays.length ? currentPage - (pageNumberLimit - 1) : currentPage - rangeSides;
     const maxPage = currentPage === firstPage ? currentPage + pageNumberLimit - 1 : currentPage + rangeSides;
 
     function createRange(min, max) {
@@ -75,7 +76,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
           key={`page-${pageNumber}`}
           className={`${
             pageNumber === currentPage && 'active font-bold bg-black text-gray-100'
-          } px-3 border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-3 hover:text-black`}
+          } px-3 border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-2 hover:text-black`}
           onClick={goToPage}
         >
           {pageNumber}
@@ -84,11 +85,12 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     }
   });
 
-  // make last shown page number
+  // ellipsis button next to previous button to skip back 2 pages
   function showPastPageIncrement() {
     setCurrentPage(currentPage - 2);
   }
 
+  // ellipsis button next to next button to skip ahead 2 pages
   function showNextPageIncrement() {
     setCurrentPage(currentPage + 2);
   }
@@ -114,7 +116,8 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
       {createContentWrappers}
       {createArrayOfArrays.length > 0 && (
         <div className="pagination-wrapper flex justify-center mt-8">
-          <nav className="pagination-nav flex justify-center items-center space-x-1 w-80">
+          <nav className="pagination-nav flex justify-center items-center space-x-1 w-84">
+            {/* Previous button */}
             <Button
               type={LinkTypes.BUTTON}
               href="/"
@@ -131,6 +134,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               />
             </Button>
             <div className="pagination-numbers flex space-x-1">
+              {/* Ellipsis button */}
               {currentPage > pageNumberLimit && (
                 <Button
                   type={LinkTypes.BUTTON}
@@ -142,7 +146,9 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                   &hellip;
                 </Button>
               )}
+              {/* Page numbers */}
               {showPageNumbers}
+              {/* Ellipsis button */}
               {createArrayOfArrays.length > pageNumberLimit && currentPage < createArrayOfArrays.length - 2 && (
                 <Button
                   type={LinkTypes.BUTTON}
@@ -155,6 +161,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                 </Button>
               )}
             </div>
+            {/* Next button */}
             <Button
               type={LinkTypes.BUTTON}
               href="/"
