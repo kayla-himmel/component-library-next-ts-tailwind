@@ -40,7 +40,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     if (isCurrentPage) {
       return (
         <div
-          className="content_wrapper grid grid-cols-3 justify-items-center"
+          className="content_wrapper grid grid-cols-3 grid-rows-2 justify-items-center"
           key={`id-${pageNumber}`}
           id={`page-${pageNumber}`}
         >
@@ -149,17 +149,19 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               {/* Page numbers */}
               {showPageNumbers}
               {/* Right Ellipsis button */}
-              {createArrayOfArrays.length >= pageNumberLimit && (
-                <Button
-                  type={LinkTypes.BUTTON}
-                  href="/"
-                  id="previous"
-                  className="border-0 flex px-3"
-                  onClick={showNextPageIncrement}
-                >
-                  &hellip;
-                </Button>
-              )}
+              {createArrayOfArrays.length >= pageNumberLimit &&
+                currentPage !== createArrayOfArrays.length &&
+                currentPage !== createArrayOfArrays.length - 1 && (
+                  <Button
+                    type={LinkTypes.BUTTON}
+                    href="/"
+                    id="previous"
+                    className="border-0 flex px-3"
+                    onClick={showNextPageIncrement}
+                  >
+                    &hellip;
+                  </Button>
+                )}
             </div>
             {/* Next button */}
             <Button
