@@ -10,6 +10,7 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
 
   const handleItemClick = (id, item) => {
     selectedItem === item ? setSelectedItem(null) : setSelectedItem(item);
+    setOpen(false);
   };
 
   return (
@@ -41,7 +42,6 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
                     }`}
                     onClick={(e) => handleItemClick(e.currentTarget.id, item)}
                     id={item.id as string}
-                    key={`id-${item.id}`}
                     data-menu-id="dropdown-root"
                     data-parent-id={title}
                   >
