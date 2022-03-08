@@ -116,7 +116,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
       {createContentWrappers}
       {createArrayOfArrays.length > 0 && (
         <div className="pagination-wrapper flex justify-center mt-8">
-          <nav className="pagination-nav flex justify-center items-center space-x-1 w-84">
+          <nav className="pagination-nav flex justify-between items-center space-x-1 w-80">
             {/* Previous button */}
             <Button
               type={LinkTypes.BUTTON}
@@ -134,8 +134,8 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               />
             </Button>
             <div className="pagination-numbers flex space-x-1">
-              {/* Ellipsis button */}
-              {currentPage > pageNumberLimit && (
+              {/* Left Ellipsis button */}
+              {currentPage >= pageNumberLimit && (
                 <Button
                   type={LinkTypes.BUTTON}
                   href="/"
@@ -148,13 +148,13 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               )}
               {/* Page numbers */}
               {showPageNumbers}
-              {/* Ellipsis button */}
-              {createArrayOfArrays.length > pageNumberLimit && currentPage < createArrayOfArrays.length - 2 && (
+              {/* Right Ellipsis button */}
+              {createArrayOfArrays.length >= pageNumberLimit && (
                 <Button
                   type={LinkTypes.BUTTON}
                   href="/"
                   id="previous"
-                  className="border-0 flex"
+                  className="border-0 flex px-3"
                   onClick={showNextPageIncrement}
                 >
                   &hellip;
@@ -166,7 +166,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               type={LinkTypes.BUTTON}
               href="/"
               id="next"
-              className="border-0 flex"
+              className="border-0 flex px-3"
               onClick={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
             >
