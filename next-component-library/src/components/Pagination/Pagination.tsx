@@ -74,9 +74,14 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
           href="/"
           id={`${pageNumber}`}
           key={`page-${pageNumber}`}
-          className={`${
-            pageNumber === currentPage && 'active font-bold bg-black text-gray-100'
-          } px-3 border-0 text-xl hover:text-2xl hover:font-bold hover:py-1 hover:px-2 hover:text-black`}
+          className={
+            pageNumber === currentPage
+              ? 'active font-bold bg-black text-gray-100 text-xl flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 cursor-none hover:bg-black hover:border-0 focus:outline-none'
+              : 'flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 text-l sm:text-xl hover:text-xl sm:hover:text-2xl hover:font-bold hover:text-black hover:py-1'
+          }
+          // className={`${
+          //   pageNumber === currentPage && 'active font-bold bg-black text-gray-100 text-xl cursor-none'
+          // } flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 text-l sm:text-xl hover:text-xl sm:hover:text-2xl hover:font-bold hover:text-black hover:py-1`}
           onClick={goToPage}
         >
           {pageNumber}
@@ -111,24 +116,26 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     setCurrentPage(currentPage + 1);
   }
 
+  const chevronClass = 'border-0 flex items-center px-3 py-3 w-11 h-11 sm:w-12 sm:h-12';
+  const ellipsisClass = 'flex items-center justify-center text-xl w-11 sm:w-12 h-11 sm:h-12 border-0 flex px-3';
   return (
     <>
       {createContentWrappers}
       {createArrayOfArrays.length > 0 && (
         <div className="pagination-wrapper flex justify-center mt-8">
-          <nav className="pagination-nav flex justify-between items-center space-x-1 w-80">
+          <nav className="pagination-nav flex justify-between items-center space-x-1 sm:w-96">
             {/* Previous button */}
             <Button
               type={LinkTypes.BUTTON}
               href="/"
               id="previous"
-              className="border-0 flex px-3"
+              className={chevronClass}
               onClick={goToPrevious}
               disabled={currentPage === 1}
             >
               <Image
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 src="/assets/iconChevronSign.svg"
                 alt="Go back to previous page of results"
               />
@@ -140,7 +147,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                   type={LinkTypes.BUTTON}
                   href="/"
                   id="next"
-                  className="border-0 flex px-3"
+                  className={ellipsisClass}
                   onClick={showPastPageIncrement}
                 >
                   &hellip;
@@ -156,7 +163,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                     type={LinkTypes.BUTTON}
                     href="/"
                     id="previous"
-                    className="border-0 flex px-3"
+                    className={ellipsisClass}
                     onClick={showNextPageIncrement}
                   >
                     &hellip;
@@ -168,14 +175,14 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               type={LinkTypes.BUTTON}
               href="/"
               id="next"
-              className="border-0 flex px-3"
+              className={chevronClass}
               onClick={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
             >
               <Image
                 className="rotate-180"
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 src="/assets/iconChevronSign.svg"
                 alt="Go to next page of results"
               />

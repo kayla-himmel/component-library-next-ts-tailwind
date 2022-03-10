@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
       ) : (
         <button
           role="button"
-          className={`px-6 py-2 border rounded hover:bg-gray-100 hover:border-2 hover:border-black disabled:bg-gray-300 disabled:text-gray-600 disabled:border-gray-300 disabled:border-2 ${
+          className={`px-6 py-2 border rounded hover:bg-gray-100 hover:border-2 hover:border-black disabled:bg-gray-400 disabled:text-gray-600 disabled:border-gray-400 disabled:border-2 disabled:cursor-none ${
             className && className
           }`}
           id={id}
