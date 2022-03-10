@@ -79,9 +79,6 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               ? 'active font-bold bg-black text-gray-100 text-xl flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 cursor-none hover:bg-black hover:border-0 focus:outline-none'
               : 'flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 text-l sm:text-xl hover:text-xl sm:hover:text-2xl hover:font-bold hover:text-black hover:py-1'
           }
-          // className={`${
-          //   pageNumber === currentPage && 'active font-bold bg-black text-gray-100 text-xl cursor-none'
-          // } flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 text-l sm:text-xl hover:text-xl sm:hover:text-2xl hover:font-bold hover:text-black hover:py-1`}
           onClick={goToPage}
         >
           {pageNumber}
