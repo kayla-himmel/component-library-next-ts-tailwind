@@ -1,10 +1,16 @@
 export interface CarouselProps {
-  content: slideProps;
+  slide: slideProps[];
 }
 
 interface slideProps {
   a11yText: string;
-  content: React.ReactNode;
+  content: slideContent;
   id?: string;
   key?: string;
+}
+
+interface slideContent {
+  title?: string;
+  image?: string;
+  caption?: string;
 }

@@ -2,11 +2,13 @@ import React from 'react';
 // import { Button } from '../Button/Button';
 import { CarouselProps } from './Carousel.interfaces';
 
-export const Carousel: React.FC<CarouselProps> = ({ content }) => {
-  const mapSlides = content.map((item) => {
+export const Carousel: React.FC<CarouselProps> = ({ slide }) => {
+  const mapSlides = slide.map((item) => {
     <div className="carousel-slide" id={item.id} key={`slide-{item.key}`}>
       <div>{item.content}</div>
-      <h3>{item.caption}</h3>
+      {item.content.title ? <h2>{item.content.title}</h2> : null}
+      {item.content.title ? <h2>{item.content.title}</h2> : null}
+      {item.content.title ? <h2>{item.content.title}</h2> : null}
     </div>;
   });
 
