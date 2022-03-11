@@ -1,5 +1,5 @@
 export interface CarouselProps {
-  slide: slideProps[];
+  slideArray: slideProps[];
 }
 
 interface slideProps {
