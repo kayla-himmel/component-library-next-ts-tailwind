@@ -6,9 +6,21 @@ export enum LinkTypes {
   LINK = 'link',
 }
 
+// export enum IconTypes {
+//   CHEVRON = 'chevron',
+//   PLUS = 'plus',
+//   MINUS = 'minus',
+//   CLOSE = 'close',
+// }
+
 export default interface ButtonProps extends LinkProps, HTMLAttributes<HTMLButtonElement> {
   type: LinkTypes.BUTTON | LinkTypes.LINK;
   disabled?: boolean;
   ariaExpanded?: boolean;
   id?: string;
+}
+
+export interface ButtonIconProps extends ButtonProps {
+  onClick: () => void;
+  className?: string;
 }

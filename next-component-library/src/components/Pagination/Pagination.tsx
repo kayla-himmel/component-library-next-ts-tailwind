@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { Button } from '../Button/Button';
 import { LinkTypes } from '../Button/Button.interfaces';
+import { ButtonIcon } from '../Button/ButtonIcon';
 import PaginationProps from './Pagination.interfaces';
 
 export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray, startingPage }) => {
@@ -113,7 +114,6 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     setCurrentPage(currentPage + 1);
   }
 
-  const chevronClass = 'border-0 flex items-center px-3 py-3 w-11 h-11 sm:w-12 sm:h-12';
   const ellipsisClass = 'flex items-center justify-center text-xl w-11 sm:w-12 h-11 sm:h-12 border-0 flex px-3';
   return (
     <>
@@ -121,24 +121,24 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
       {createArrayOfArrays.length > 0 && (
         <div className="pagination-wrapper flex justify-center mt-8">
           <nav className="pagination-nav flex justify-between items-center space-x-1 sm:w-96">
-            {/* Previous button */}
-            <Button
+            {/* Previous "<" button */}
+            <ButtonIcon
               type={LinkTypes.BUTTON}
               href="/"
               id="previous"
-              className={chevronClass}
               onClick={goToPrevious}
               disabled={currentPage === 1}
             >
               <Image
+                className="button-previous"
                 width="20"
                 height="20"
                 src="/assets/iconChevronSign.svg"
-                alt="Go back to previous page of results"
+                alt="Go to previous page of results"
               />
-            </Button>
+            </ButtonIcon>
             <div className="pagination-numbers flex space-x-1">
-              {/* Left Ellipsis button */}
+              {/* Left Ellipsis "..." button */}
               {currentPage >= pageNumberLimit && (
                 <Button
                   type={LinkTypes.BUTTON}
@@ -152,7 +152,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               )}
               {/* Page numbers */}
               {showPageNumbers}
-              {/* Right Ellipsis button */}
+              {/* Right Ellipsis "..." button */}
               {createArrayOfArrays.length >= pageNumberLimit &&
                 currentPage !== createArrayOfArrays.length &&
                 currentPage !== createArrayOfArrays.length - 1 && (
@@ -167,23 +167,22 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                   </Button>
                 )}
             </div>
-            {/* Next button */}
-            <Button
+            {/* Next ">" button */}
+            <ButtonIcon
               type={LinkTypes.BUTTON}
               href="/"
               id="next"
-              className={chevronClass}
               onClick={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
             >
               <Image
-                className="rotate-180"
+                className="button-previous rotate-180"
                 width="20"
                 height="20"
                 src="/assets/iconChevronSign.svg"
                 alt="Go to next page of results"
               />
-            </Button>
+            </ButtonIcon>
           </nav>
         </div>
       )}
