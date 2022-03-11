@@ -9,7 +9,6 @@ export enum LinkTypes {
 export default interface ButtonProps extends LinkProps, HTMLAttributes<HTMLButtonElement> {
   type: LinkTypes.BUTTON | LinkTypes.LINK;
   disabled?: boolean;
-  onClick?: () => void;
-  onKeyDown?: () => void;
   ariaExpanded?: boolean;
+  id?: string;
 }

@@ -10,6 +10,7 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
 
   const handleItemClick = (id, item) => {
     selectedItem === item ? setSelectedItem(null) : setSelectedItem(item);
+    setOpen(false);
   };
 
   return (
@@ -34,14 +35,13 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
             </button>
             <ul className={`dropdown-body p-1 ${isOpen ? 'open block border-t' : 'hidden'}`}>
               {data.map((item) => (
-                <li>
+                <li key={`id-${item.id}`}>
                   <button
                     className={`dropdown-item p-2 pl-3 hover:cursor-pointer w-full text-left ${
                       item === selectedItem ? 'selected bg-slate-300' : ''
                     }`}
                     onClick={(e) => handleItemClick(e.currentTarget.id, item)}
                     id={item.id as string}
-                    key={`id-${item.id}`}
                     data-menu-id="dropdown-root"
                     data-parent-id={title}
                   >
