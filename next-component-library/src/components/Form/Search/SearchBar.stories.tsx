@@ -19,5 +19,6 @@ const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBar {...args
 // SearchBar example in Storybook
 export const SearchBarPrimary = Template.bind({});
 SearchBarPrimary.args = {
-  title: 'Select an Option',
+  label: 'Select an Option',
+  addLabelAbove: true,
 };
