@@ -36,7 +36,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <AccordionItem title="Section 1" content={contentP} />
         <AccordionItem title="Section 2" content={contentP} />
       </AccordionWrapper>
-      <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
+      <Button type={LinkTypes.BUTTON} onClick={() => setShowModal(true)}>
         Open Modal
       </Button>
       <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">

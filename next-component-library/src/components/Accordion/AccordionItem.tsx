@@ -28,7 +28,6 @@ export const AccordionItem: React.FC<AccordionProps> = ({ title, content }) => {
       <Button
         className="accordion-item py-6 pl-0 pr-0 border-white flex items-center justify-between"
         onClick={toggleAccordion}
-        href="/"
         type={LinkTypes.BUTTON}
         aria-expanded={active}
         aria-controls="accordion-content"

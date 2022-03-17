@@ -21,7 +21,7 @@ const Template: ComponentStoryFn<typeof Modal> = () => {
 
   return (
     <>
-      <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
+      <Button type={LinkTypes.BUTTON} onClick={() => setShowModal(true)}>
         Open Modal
       </Button>
       <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">

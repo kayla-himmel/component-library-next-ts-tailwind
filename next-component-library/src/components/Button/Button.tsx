@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ButtonProps, { LinkTypes } from './Button.interfaces';
 
 export const Button: React.FC<ButtonProps> = ({
-  href,
+  href = '',
   as,
   children,
   type,
@@ -25,6 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
           onKeyDown={onKeyDown}
           disabled={disabled}
           aria-expanded={ariaExpanded}
+          type={type}
         >
           {children}
         </button>

@@ -9,7 +9,7 @@ const IndexPage = () => (
     <Layout title="Home | Next.js + TypeScript Example">
       <h1 className="text-3xl font-bold underline">Hello Next.js 👋</h1>
       {/* Button example */}
-      <Button href="/" type={LinkTypes.BUTTON} onClick={() => alert('hey!')} className="bg-gray-300 p-4 border-black">
+      <Button type={LinkTypes.BUTTON} onClick={() => alert('hey!')} className="bg-gray-300 p-4 border-black">
         <A11yText srText={alertText} visualText={alertText} />
       </Button>
     </Layout>
