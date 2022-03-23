@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Button } from '../Button/Button';
-import { CarouselProps } from './Carousel.interfaces';
 import { ButtonIcon } from '../Button/ButtonIcon';
+import { CarouselProps } from './Carousel.interfaces';
 import { LinkTypes } from '../Button/Button.interfaces';
 
 export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
@@ -49,7 +48,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     }
   });
 
-  // carousel navigation (previous/next buttons and pips)
+  // carousel navigation (previous/next buttons and pips (dots) to navigate to specific slides)
   const showCarouselNav = createArrayOfSlides.map((arrayItem, index) => {
     const slideNumber = index + 1;
 
@@ -57,9 +56,9 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
       <ButtonIcon
         type={LinkTypes.BUTTON}
         href="/"
-        id={`slidePip-${slideNumber}`}
-        onClick={goToSlide}
+        id={`slide-${slideNumber}`}
         key={`slide-${slideNumber}`}
+        onClick={goToSlide}
       >
         {currentSlide ? (
           <Image
@@ -82,7 +81,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     );
   });
 
-  // click event logic for actual Slide pip buttons
+  // click event logic for nav to specific slides using the pip (dots) buttons
   function goToSlide(event) {
     const newSlide = parseInt(event.target.id);
     setCurrentSlide(newSlide);
