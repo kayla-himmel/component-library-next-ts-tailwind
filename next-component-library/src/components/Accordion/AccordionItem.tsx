@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { AccordionProps } from './Accordion.interfaces';
-import { LinkTypes } from '../Button/Button.interfaces';
 import { Button } from '../Button/Button';
 
 export const AccordionItem: React.FC<AccordionProps> = ({ title, content }) => {
@@ -28,8 +27,8 @@ export const AccordionItem: React.FC<AccordionProps> = ({ title, content }) => {
       <Button
         className="accordion-item py-6 pl-0 pr-0 border-white flex items-center justify-between"
         onClick={toggleAccordion}
-        href="/"
-        type={LinkTypes.BUTTON}
+        onKeyDown={toggleAccordion}
+        data-id="accordionSectionToggle"
         aria-expanded={active}
         aria-controls="accordion-content"
       >

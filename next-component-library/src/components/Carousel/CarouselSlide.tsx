@@ -2,8 +2,7 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 
 import { SlideContentProps } from './Carousel.interfaces';
-import { ButtonIcon } from '../Button/ButtonIcon';
-import { LinkTypes } from '../Button/Button.interfaces';
+import { Button } from '../Button/Button';
 
 export const CarouselSlide: React.FC<SlideContentProps> = ({ title, subtitle, bgImg }) => {
   const [active, setActive] = useState(false);
@@ -25,14 +24,14 @@ export const CarouselSlide: React.FC<SlideContentProps> = ({ title, subtitle, bg
       alt="Viewing current slide"
     />
   ) : (
-    <Image className="button-pip" width="20" height="20" src="/assets/iconCircleUnfilled.svg" alt={`View slide`} />
+    <Image className="button-pip" width="20" height="20" src="/assets/iconCircleUnfilled.svg" alt="View slide" />
   );
 
   return (
     <section className="flex flex-col">
-      <ButtonIcon type={LinkTypes.BUTTON} href="/" id={`slide-${title}`} key={`slide-${title}`} onClick={goToSlide}>
+      <Button data-id={`slide-${title}`} key={`slide-${title}`} onClick={goToSlide} onKeyDown={goToSlide}>
         {changeIcon}
-      </ButtonIcon>
+      </Button>
       <div
         ref={contentSpace}
         className="carousel-slide--container overflow-auto transition-max-height duration-700 ease-in-out"

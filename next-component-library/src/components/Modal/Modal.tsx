@@ -1,6 +1,5 @@
 import { Button } from '../Button/Button';
 import Image from 'next/image';
-import { LinkTypes } from '../Button/Button.interfaces';
 import { ModalProps } from './Modal.interfaces';
 import ReactDOM from 'react-dom';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -54,10 +53,10 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, 
       <header className="modal_header flex flex-row justify-between flex-nowrap justify-items-start">
         {title && <h2 className={titleClass && titleClass}>{title}</h2>}
         <Button
-          type={LinkTypes.BUTTON}
-          href="/"
+          data-id="modalCloseButton"
           className="py-4 px-4 -mt-4 -mr-4 flex justify-center items-center border-0"
           onClick={onClose}
+          onKeyDown={onClose}
         >
           <Image src="/assets/iconCloseButton.svg" height={24} width={24} alt="close modal button" />
         </Button>

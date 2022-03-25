@@ -7,7 +7,7 @@ type Props = {
 };
 
 const List = ({ items }: Props) => (
-  <ul>
+  <ul className="listOfLinks">
     {items.map((item) => (
       <li key={item.name}>
         <ListItem data={item} />

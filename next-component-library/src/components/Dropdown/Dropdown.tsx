@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { Button } from '../Button/Button';
 import { DropdownProps } from './Dropdown.interfaces';
 
 const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
@@ -18,9 +19,10 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
       <div id="dropdown-root">
         <ul className="dropdown-topList">
           <li>
-            <button
+            <Button
               className="dropdown-header p-2 flex justify-between align-items-center w-full"
               onClick={toggleDropdown}
+              onKeyDown={toggleDropdown}
               data-menu-id="dropdown-root"
             >
               {/* if selected item show its label, if not show the dropdown title */}
@@ -32,21 +34,22 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
                 alt="arrow to display dropdown menu open or closed"
                 className={`rotate-270 ${isOpen && 'rotate-90'}`}
               />
-            </button>
+            </Button>
             <ul className={`dropdown-body p-1 ${isOpen ? 'open block border-t' : 'hidden'}`}>
               {data.map((item) => (
                 <li key={`id-${item.id}`}>
-                  <button
+                  <Button
                     className={`dropdown-item p-2 pl-3 hover:cursor-pointer w-full text-left ${
                       item === selectedItem ? 'selected bg-slate-300' : ''
                     }`}
                     onClick={(e) => handleItemClick(e.currentTarget.id, item)}
-                    id={item.id as string}
+                    onKeyDown={(e) => handleItemClick(e.currentTarget.id, item)}
+                    data-id={item.id as string}
                     data-menu-id="dropdown-root"
                     data-parent-id={title}
                   >
                     {item.label}
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>

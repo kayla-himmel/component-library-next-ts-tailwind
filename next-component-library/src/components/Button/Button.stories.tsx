@@ -13,6 +13,31 @@ export default {
         disable: true,
       },
     },
+    onKeyDown: {
+      table: {
+        disable: true,
+      },
+    },
+    iconType: {
+      table: {
+        disable: true,
+      },
+    },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    disabled: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 

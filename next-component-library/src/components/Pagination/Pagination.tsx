@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { Button } from '../Button/Button';
-import { LinkTypes } from '../Button/Button.interfaces';
-import { ButtonIcon } from '../Button/ButtonIcon';
 import PaginationProps from './Pagination.interfaces';
 
 export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray, startingPage }) => {
@@ -71,9 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     if (createRange(minPage, maxPage).includes(pageNumber)) {
       return (
         <Button
-          type={LinkTypes.BUTTON}
-          href="/"
-          id={`${pageNumber}`}
+          data-id={`page-${pageNumber}`}
           key={`page-${pageNumber}`}
           className={
             pageNumber === currentPage
@@ -81,6 +77,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               : 'flex p-1 justify-center align-center flex-wrap items-center w-11 h-11 sm:h-12 box-border border-0 text-l sm:text-xl hover:text-xl sm:hover:text-2xl hover:font-bold hover:text-black hover:py-1'
           }
           onClick={goToPage}
+          onKeyDown={goToPage}
         >
           {pageNumber}
         </Button>
@@ -122,13 +119,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
         <div className="pagination-wrapper flex justify-center mt-8">
           <nav className="pagination-nav flex justify-between items-center space-x-1 sm:w-96">
             {/* Previous "<" button */}
-            <ButtonIcon
-              type={LinkTypes.BUTTON}
-              href="/"
-              id="previous"
-              onClick={goToPrevious}
-              disabled={currentPage === 1}
-            >
+            <Button data-id="previousPage" onClick={goToPrevious} onKeyDown={goToPrevious} disabled={currentPage === 1}>
               <Image
                 className="button-previous"
                 width="20"
@@ -136,16 +127,15 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                 src="/assets/iconChevronSign.svg"
                 alt="Go to previous page of results"
               />
-            </ButtonIcon>
+            </Button>
             <div className="pagination-numbers flex space-x-1">
               {/* Left Ellipsis "..." button */}
               {currentPage >= pageNumberLimit && (
                 <Button
-                  type={LinkTypes.BUTTON}
-                  href="/"
-                  id="next"
+                  data-id="goBackTwoPages"
                   className={ellipsisClass}
                   onClick={showPastPageIncrement}
+                  onKeyDown={showPastPageIncrement}
                 >
                   &hellip;
                 </Button>
@@ -157,22 +147,20 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                 currentPage !== createArrayOfArrays.length &&
                 currentPage !== createArrayOfArrays.length - 1 && (
                   <Button
-                    type={LinkTypes.BUTTON}
-                    href="/"
-                    id="previous"
+                    data-id="goForwardTwoPages"
                     className={ellipsisClass}
                     onClick={showNextPageIncrement}
+                    onKeyDown={showNextPageIncrement}
                   >
                     &hellip;
                   </Button>
                 )}
             </div>
             {/* Next ">" button */}
-            <ButtonIcon
-              type={LinkTypes.BUTTON}
-              href="/"
-              id="next"
+            <Button
+              data-id="nextPage"
               onClick={goToNext}
+              onKeyDown={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
             >
               <Image
@@ -182,7 +170,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                 src="/assets/iconChevronSign.svg"
                 alt="Go to next page of results"
               />
-            </ButtonIcon>
+            </Button>
           </nav>
         </div>
       )}

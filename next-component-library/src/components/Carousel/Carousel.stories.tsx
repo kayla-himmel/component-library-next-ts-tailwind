@@ -1,5 +1,5 @@
 import { ComponentStory, Meta } from '@storybook/react';
-import { transformDataToHtml } from '../../../utils/sample-data';
+// import { transformDataToHtml } from '../../../utils/sample-data';
 import { Carousel } from './Carousel';
 import { CarouselSlide } from './CarouselSlide';
 

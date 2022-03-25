@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ButtonIcon } from '../Button/ButtonIcon';
+import { Button } from '../Button/Button';
 import { CarouselProps } from './Carousel.interfaces';
-import { LinkTypes } from '../Button/Button.interfaces';
 
 export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
   const [currentSlide, setCurrentSlide] = useState<number>(1);
@@ -53,13 +52,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     const slideNumber = index + 1;
 
     return (
-      <ButtonIcon
-        type={LinkTypes.BUTTON}
-        href="/"
-        id={`slide-${slideNumber}`}
-        key={`slide-${slideNumber}`}
-        onClick={goToSlide}
-      >
+      <Button data-id={`slide-${slideNumber}`} key={`slide-${slideNumber}`} onClick={goToSlide} onKeyDown={goToSlide}>
         {currentSlide ? (
           <Image
             className="button-pip active"
@@ -77,7 +70,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
             alt={`View slide ${index + 1}`}
           />
         )}
-      </ButtonIcon>
+      </Button>
     );
   });
 
@@ -101,7 +94,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     <div className="carousel-wrapper">
       {mapSlides}
       <div className="carousel-nav">
-        <ButtonIcon type={LinkTypes.BUTTON} href="/" id="previousSlide" onClick={goToPrevious}>
+        <Button data-id="previousSlide" onClick={goToPrevious} onKeyDown={goToPrevious}>
           <Image
             className="button-previous"
             width="20"
@@ -109,9 +102,9 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
             src="/assets/iconChevronSign.svg"
             alt="Go to previous slide"
           />
-        </ButtonIcon>
+        </Button>
         <div className="carousel-pips">{showCarouselNav}</div>
-        <ButtonIcon type={LinkTypes.BUTTON} href="/" id="nextSlide" onClick={goToNext}>
+        <Button data-id="nextSlide" onClick={goToNext} onKeyDown={goToNext}>
           <Image
             className="button-next rotate-180"
             width="20"
@@ -119,7 +112,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
             src="/assets/iconChevronSign.svg"
             alt="Go to next slide"
           />
-        </ButtonIcon>
+        </Button>
       </div>
     </div>
   );

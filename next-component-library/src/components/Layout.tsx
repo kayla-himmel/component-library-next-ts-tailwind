@@ -1,9 +1,9 @@
 import React, { ReactNode, useState } from 'react';
 import { Button } from './Button/Button';
 import Head from 'next/head';
-import { transformDataToHtml } from '../../utils/sample-data';
-import { LinkTypes } from './Button/Button.interfaces';
+import { transformDataToPaginationHtml } from '../../utils/sample-data';
 import { Modal } from './Modal/Modal';
+import { LinkComponent as Link } from './Link/Link';
 import { AccordionItem } from './Accordion/AccordionItem';
 import { AccordionWrapper } from './Accordion/AccordionWrapper';
 import { Pagination } from './Pagination/Pagination';
@@ -28,10 +28,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       </Head>
       <header>
         <nav>
-          <Button href="/" type={LinkTypes.LINK} children="Home" />
-          <Button href="/about" type={LinkTypes.LINK} children="About" />
-          <Button href="/componentLibrary" type={LinkTypes.LINK} children="Component Library List" />
-          <Button href="/api/componentLibrary/library" type={LinkTypes.LINK} children="Component Library API" />
+          <Link href="/index" children="Home" />
+          <Link href="/about" children="About" />
+          <Link href="/list" children="Component Library List" />
+          <Link href="/api" children="Component Library API" />
         </nav>
       </header>
       {children}
@@ -39,16 +39,15 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <AccordionItem title="Section 1" content={contentP} />
         <AccordionItem title="Section 2" content={contentP} />
       </AccordionWrapper>
-      <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
+      <Button data-id="openModal" onClick={() => setShowModal(true)} onKeyDown={() => setShowModal(true)}>
         Open Modal
       </Button>
       {/* {displayPageDiv} */}
-      <Pagination itemsPerPage={6} dataArray={transformDataToHtml()} startingPage={1} />
+      <Pagination itemsPerPage={6} dataArray={transformDataToPaginationHtml()} startingPage={1} />
       <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">
         <div>
           <h3>Modal Body</h3>
           <p>Modal Paragraph - {contentP}</p>
-          <Button href="/test" type={LinkTypes.BUTTON} children="Test" />
         </div>
       </Modal>
       <footer>
