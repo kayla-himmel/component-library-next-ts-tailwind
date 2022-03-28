@@ -5,7 +5,18 @@ import { CarouselSlide } from './CarouselSlide';
 export default {
   title: 'Components/Carousel',
   component: Carousel,
-  argTypes: {},
+  argTypes: {
+    slideArray: {
+      table: {
+        disable: true,
+      },
+    },
+    mapChildren: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta;
 
 const carouselData = [

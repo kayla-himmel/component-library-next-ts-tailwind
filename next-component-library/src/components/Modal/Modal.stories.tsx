@@ -13,6 +13,26 @@ export default {
         disable: true,
       },
     },
+    onClose: {
+      table: {
+        disable: true,
+      },
+    },
+    show: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
+    titleClass: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
@@ -21,7 +41,7 @@ const Template: ComponentStoryFn<typeof Modal> = () => {
 
   return (
     <>
-      <Button type={LinkTypes.BUTTON} href="/" onClick={() => setShowModal(true)}>
+      <Button onClick={() => setShowModal(true)} onKeyDown={() => setShowModal(true)}>
         Open Modal
       </Button>
       <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">
@@ -34,7 +54,6 @@ const Template: ComponentStoryFn<typeof Modal> = () => {
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
             deserunt mollit anim id est laborum.
           </p>
-          <Button href="/test" type={LinkTypes.BUTTON} children="Test" />
         </div>
       </Modal>
       <div id="modal-root"></div>
