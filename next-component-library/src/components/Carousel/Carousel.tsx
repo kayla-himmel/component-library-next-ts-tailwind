@@ -2,58 +2,24 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '../Button/Button';
 import { CarouselProps } from './Carousel.interfaces';
+import { CarouselSlide } from './CarouselSlide';
 
 export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
-  const [currentSlide, setCurrentSlide] = useState<number>(1);
+  // set first index of the slideArray as the currentSlide
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-  // create a new data array that contains chunks of array, pushing them into the resultArray
-  const createArrayOfSlides = slideArray.reduce((resultArray, item, index) => {
-    if (!resultArray[index]) {
-      resultArray[index] = []; // start a new chunk of items
-    }
-
-    resultArray[index].push(item);
-
-    return resultArray;
-  }, []);
-
-  // map through each slide and display in carousel-wrapper div
-  const mapSlides = createArrayOfSlides.map((arrayItem, index) => {
-    const slideNumber = index + 1;
-
-    const isCurrentSlide = slideNumber === currentSlide;
-
-    const createSlide = arrayItem.map((item, index) => {
-      return (
-        <div className="carousel-slide" id={item.id} key={`slide-${item.key}-${index}`}>
-          {item.content.title ? <h2>{item.content.title}</h2> : null}
-          {item.content.title ? <Image width="24" height="24" alt={item.a11yText} src={item.content.image} /> : null}
-          {item.content.title ? <h2>{item.content.title}</h2> : null}
-        </div>
-      );
-    });
-
-    // chunks of items div that displays the items in the array of the array whose index matches the page number
-    if (isCurrentSlide) {
-      return (
-        <div
-          className="content_wrapper grid grid-cols-3 grid-rows-2 justify-items-center"
-          key={`id-${slideNumber}`}
-          id={`page-${slideNumber}`}
-        >
-          {createSlide}
-        </div>
-      );
-    }
+  // map through each slide and display in .carousel-wrapper div
+  const buildSlides = slideArray.map((item, index) => {
+    // build each slide
+    return <CarouselSlide id={item.id} key={`slide-${item.key}-${index}`} content={item.content} />;
   });
 
-  // carousel navigation (previous/next buttons and pips (dots) to navigate to specific slides)
-  const showCarouselNav = createArrayOfSlides.map((arrayItem, index) => {
-    const slideNumber = index + 1;
-
+  // build carousel navigation by creating a pip button for each index in the buildSlides array
+  const carouselNav = buildSlides.map((arrayItem, index) => {
     return (
-      <Button data-id={`slide-${slideNumber}`} key={`slide-${slideNumber}`} onClick={goToSlide} onKeyDown={goToSlide}>
+      <Button data-id={`slide-${index}`} key={`slide-${index}`} onClick={goToSlide} onKeyDown={goToSlide}>
         {currentSlide ? (
+          // Display filled-in circle pip if slide is active
           <Image
             className="button-pip active"
             width="20"
@@ -62,6 +28,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
             alt="Viewing current slide"
           />
         ) : (
+          // Display empty outlined circle pip is slide is not active
           <Image
             className="button-pip"
             width="20"
@@ -80,40 +47,12 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     setCurrentSlide(newSlide);
   }
 
-  // click event logic for Previous button
-  function goToPrevious() {
-    setCurrentSlide(currentSlide - 1);
-  }
-
-  // click event logic for Next button
-  function goToNext() {
-    setCurrentSlide(currentSlide + 1);
-  }
-
   return (
     <div className="carousel-wrapper">
-      {mapSlides}
-      <div className="carousel-nav">
-        <Button data-id="previousSlide" onClick={goToPrevious} onKeyDown={goToPrevious}>
-          <Image
-            className="button-previous"
-            width="20"
-            height="20"
-            src="/assets/iconChevronSign.svg"
-            alt="Go to previous slide"
-          />
-        </Button>
-        <div className="carousel-pips">{showCarouselNav}</div>
-        <Button data-id="nextSlide" onClick={goToNext} onKeyDown={goToNext}>
-          <Image
-            className="button-next rotate-180"
-            width="20"
-            height="20"
-            src="/assets/iconChevronSign.svg"
-            alt="Go to next slide"
-          />
-        </Button>
-      </div>
+      {/* Actual slides */}
+      <div className="carousel-slide__container">{buildSlides}</div>
+      {/* Carousel Navigation */}
+      <div className="carousel-nav">{carouselNav}</div>
     </div>
   );
 };

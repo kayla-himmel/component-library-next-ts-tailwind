@@ -2,9 +2,9 @@ export interface CarouselProps {
   slideArray: SlideProps[];
 }
 
-interface SlideProps {
-  a11yText: string;
+export interface SlideProps {
   content: SlideContentProps;
+  a11yText?: string;
   id?: string;
   key?: string;
 }

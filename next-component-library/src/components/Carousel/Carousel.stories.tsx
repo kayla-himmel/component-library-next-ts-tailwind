@@ -16,6 +16,11 @@ export default {
         disable: true,
       },
     },
+    createSlides: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
@@ -43,12 +48,28 @@ const carouselData = [
   },
 ];
 
-const mapChildren = carouselData.map((item, index) => <CarouselSlide key={`${item.title}-${index}`} />);
+// create slides for carousel
+const createSlides = carouselData.map((item, index) => <CarouselSlide key={`${item.title}-${index}`} content={item} />);
 
-const Template: ComponentStory<typeof Carousel> = (args) => <Carousel {...args}>{mapChildren}</Carousel>;
+// eslint-disable-next-line no-console
+console.log(createSlides[0], 'createSlides[0]');
+
+// story template to display a single slide
+const slideTemplate: ComponentStory<typeof CarouselSlide> = (args) => (
+  <CarouselSlide {...args}>{createSlides[0]}</CarouselSlide>
+);
+
+// add slides to carousel story template
+const carouselTemplate: ComponentStory<typeof Carousel> = (args) => <Carousel {...args}>{createSlides}</Carousel>;
 
 // Default Carousel story
-export const CarouselPrimary = Template.bind({});
+export const CarouselSlidePrimary = slideTemplate.bind({});
+CarouselSlidePrimary.args = {
+  createSlides,
+};
+
+// Default Carousel story
+export const CarouselPrimary = carouselTemplate.bind({});
 CarouselPrimary.args = {
-  mapChildren,
+  createSlides,
 };

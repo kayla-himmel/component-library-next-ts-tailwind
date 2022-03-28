@@ -6,7 +6,28 @@ import { AccordionWrapper } from './AccordionWrapper';
 export default {
   title: 'Components/Accordion',
   component: AccordionItem,
-  argTypes: {},
+  argTypes: {
+    mapChildren: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
+    content: {
+      table: {
+        disable: true,
+      },
+    },
+    key: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta;
 
 const contentP = (

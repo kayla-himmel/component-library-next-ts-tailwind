@@ -1,12 +1,10 @@
 import React from 'react';
 import { ComponentStory, Meta } from '@storybook/react';
-import { Button } from './Link';
-import { LinkTypes } from './Button.interfaces';
+import { LinkComponent } from './Link';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/Buttons & Links',
-  component: Button,
+  component: LinkComponent,
   argTypes: {
     onClick: {
       table: {
@@ -16,20 +14,11 @@ export default {
   },
 } as Meta;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
-// Button example in Storybook
-export const ButtonPrimary = Template.bind({});
-ButtonPrimary.args = {
-  children: 'Click Me',
-  href: '/',
-  type: LinkTypes.BUTTON,
-};
+const Template: ComponentStory<typeof LinkComponent> = (args) => <LinkComponent {...args} />;
 
 // Link example in Storybook
-export const LinkPrimary = Template.bind({});
-LinkPrimary.args = {
+export const Link = Template.bind({});
+Link.args = {
   children: 'Click to learn more',
-  type: LinkTypes.LINK,
   href: '/about',
 };
