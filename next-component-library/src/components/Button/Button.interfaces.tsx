@@ -1,26 +1,25 @@
-import { LinkProps } from 'next/link';
-import { HTMLAttributes } from 'react';
+import { DOMAttributes, KeyboardEventHandler, MouseEventHandler } from 'react';
 
 export enum LinkTypes {
   BUTTON = 'button',
   LINK = 'link',
 }
 
-// export enum IconTypes {
-//   CHEVRON = 'chevron',
-//   PLUS = 'plus',
-//   MINUS = 'minus',
-//   CLOSE = 'close',
-// }
-
-export default interface ButtonProps extends LinkProps, HTMLAttributes<HTMLButtonElement> {
-  type: LinkTypes.BUTTON | LinkTypes.LINK;
-  disabled?: boolean;
-  ariaExpanded?: boolean;
-  id?: string;
+export enum IconTypes {
+  ACTIVE = 'active',
+  CHEVRON = 'chevron',
+  CLOSE = 'close',
+  INACTIVE = 'inactive',
+  MINUS = 'minus',
+  NONE = 'none',
+  PLUS = 'plus',
 }
 
-export interface ButtonIconProps extends ButtonProps {
-  onClick: () => void;
+export default interface ButtonProps extends DOMAttributes<HTMLButtonElement> {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  onKeyDown: KeyboardEventHandler<HTMLButtonElement>;
+  iconType?: IconTypes;
   className?: string;
+  disabled?: boolean;
+  'data-id'?: string;
 }

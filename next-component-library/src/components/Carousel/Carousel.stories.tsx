@@ -1,5 +1,4 @@
 import { ComponentStory, Meta } from '@storybook/react';
-import { transformDataToHtml } from '../../../utils/sample-data';
 import { Carousel } from './Carousel';
 import { CarouselSlide } from './CarouselSlide';
 
@@ -34,8 +33,11 @@ const carouselData = [
 ];
 
 const mapChildren = carouselData.map((item, index) => <CarouselSlide key={`${item.title}-${index}`} />);
-const Template: ComponentStory<typeof Carousel> = (args) => <Carousel {...args} />;
+
+const Template: ComponentStory<typeof Carousel> = (args) => <Carousel {...args}>{mapChildren}</Carousel>;
 
 // Default Carousel story
 export const CarouselPrimary = Template.bind({});
-CarouselPrimary.args = {};
+CarouselPrimary.args = {
+  mapChildren,
+};
