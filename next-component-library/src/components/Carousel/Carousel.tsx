@@ -11,7 +11,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
   // map through each slide and display in .carousel-wrapper div
   const buildSlides = slideArray.map((item, index) => {
     // build each slide
-    return <CarouselSlide id={item.id} key={`slide-${item.key}-${index}`} content={item.content} />;
+    return <CarouselSlide id={`slide-${index}`} key={`slide-${index}`} {...item} />;
   });
 
   // build carousel navigation by creating a pip button for each index in the buildSlides array

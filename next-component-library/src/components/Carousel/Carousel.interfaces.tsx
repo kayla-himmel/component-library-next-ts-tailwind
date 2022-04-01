@@ -1,5 +1,6 @@
 export interface CarouselProps {
-  slideArray: SlideProps[];
+  // slideArray: SlideProps[];
+  slideArray: SlideContentProps[];
 }
 
 export interface SlideProps {
@@ -12,5 +13,6 @@ export interface SlideProps {
 export interface SlideContentProps {
   title?: string;
   subtitle?: string;
-  bgImg?: string;
+  image?: string;
+  id?: string;
 }

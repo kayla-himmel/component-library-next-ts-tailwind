@@ -1,4 +1,5 @@
 import { ComponentStory, Meta } from '@storybook/react';
+import ListItem from '../ListItem';
 import { Carousel } from './Carousel';
 import { CarouselSlide } from './CarouselSlide';
 
@@ -49,27 +50,31 @@ const carouselData = [
 ];
 
 // create slides for carousel
-const createSlides = carouselData.map((item, index) => <CarouselSlide key={`${item.title}-${index}`} content={item} />);
-
-// eslint-disable-next-line no-console
-console.log(createSlides[0], 'createSlides[0]');
+const createSlides = carouselData.map((item, index) => (
+  <CarouselSlide
+    id={`slide-${index}`}
+    key={`${item.title}-${index}`}
+    image={item.image}
+    title={item.title}
+    subtitle={item.subtitle}
+  />
+));
 
 // story template to display a single slide
-const slideTemplate: ComponentStory<typeof CarouselSlide> = (args) => (
-  <CarouselSlide {...args}>{createSlides[0]}</CarouselSlide>
-);
+const slideTemplate: ComponentStory<typeof CarouselSlide> = (args) => <CarouselSlide {...args} />;
 
 // add slides to carousel story template
-const carouselTemplate: ComponentStory<typeof Carousel> = (args) => <Carousel {...args}>{createSlides}</Carousel>;
+// const carouselTemplate: ComponentStory<typeof Carousel> = (args) => <Carousel {...args}>{createSlides}</Carousel>;
 
 // Default Carousel story
 export const CarouselSlidePrimary = slideTemplate.bind({});
 CarouselSlidePrimary.args = {
-  createSlides,
+  // createSlides,
+  children: createSlides,
 };
 
 // Default Carousel story
-export const CarouselPrimary = carouselTemplate.bind({});
-CarouselPrimary.args = {
-  createSlides,
-};
+// export const CarouselPrimary = carouselTemplate.bind({});
+// CarouselPrimary.args = {
+//   createSlides,
+// };
