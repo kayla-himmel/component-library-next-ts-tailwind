@@ -11,6 +11,41 @@ export default {
         disable: true,
       },
     },
+    as: {
+      table: {
+        disable: true,
+      },
+    },
+    replace: {
+      table: {
+        disable: true,
+      },
+    },
+    scroll: {
+      table: {
+        disable: true,
+      },
+    },
+    shallow: {
+      table: {
+        disable: true,
+      },
+    },
+    passHref: {
+      table: {
+        disable: true,
+      },
+    },
+    prefetch: {
+      table: {
+        disable: true,
+      },
+    },
+    locale: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
@@ -26,7 +61,7 @@ Link.args = {
 // Link example in Storybook
 export const LinkStyledAsButton = Template.bind({});
 LinkStyledAsButton.args = {
-  children: 'Click to learn more',
+  children: 'Click to learn moreaaaaaa',
   styleAs: 'button',
   href: '/about',
 };

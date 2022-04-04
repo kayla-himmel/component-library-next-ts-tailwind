@@ -28,6 +28,11 @@ export default {
         disable: true,
       },
     },
+    'data-id': {
+      table: {
+        disable: true,
+      },
+    },
     children: {
       table: {
         disable: true,
