@@ -22,3 +22,11 @@ Link.args = {
   children: 'Click to learn more',
   href: '/about',
 };
+
+// Link example in Storybook
+export const LinkStyledAsButton = Template.bind({});
+LinkStyledAsButton.args = {
+  children: 'Click to learn more',
+  styleAs: 'button',
+  href: '/about',
+};

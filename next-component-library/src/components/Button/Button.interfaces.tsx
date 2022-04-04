@@ -1,5 +1,3 @@
-import { DOMAttributes, KeyboardEventHandler, MouseEventHandler } from 'react';
-
 export enum IconTypes {
   ACTIVE = 'active',
   CHEVRON = 'chevron',
@@ -10,9 +8,7 @@ export enum IconTypes {
   PLUS = 'plus',
 }
 
-export default interface ButtonProps extends DOMAttributes<HTMLButtonElement> {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  onKeyDown: KeyboardEventHandler<HTMLButtonElement>;
+export default interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconType?: IconTypes;
   className?: string;
   disabled?: boolean;

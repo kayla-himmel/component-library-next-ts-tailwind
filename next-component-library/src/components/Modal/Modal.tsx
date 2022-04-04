@@ -47,6 +47,7 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, 
     <div
       className="modal_dialog flex flex-col bg-white border-solid border-2 border-black/50 rounded p-6 h-100 w-100"
       role="dialog"
+      aria-label={title}
       aria-modal="true"
       ref={modalRef}
     >
