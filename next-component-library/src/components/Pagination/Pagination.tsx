@@ -119,7 +119,13 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
         <div className="pagination-wrapper flex justify-center mt-8">
           <nav className="pagination-nav flex justify-between items-center space-x-1 sm:w-96">
             {/* Previous "<" button */}
-            <Button data-id="previous" onClick={goToPrevious} onKeyDown={goToPrevious} disabled={currentPage === 1}>
+            <Button
+              data-id="previous"
+              onClick={goToPrevious}
+              onKeyDown={goToPrevious}
+              disabled={currentPage === 1}
+              aria-disabled={currentPage === 1}
+            >
               <Image
                 className="button-previous"
                 width="20"
@@ -162,6 +168,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               onClick={goToNext}
               onKeyDown={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
+              aria-disabled={currentPage === createArrayOfArrays.length}
             >
               <Image
                 className="button-previous rotate-180"

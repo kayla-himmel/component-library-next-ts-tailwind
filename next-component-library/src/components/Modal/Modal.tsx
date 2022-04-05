@@ -49,15 +49,16 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose, title, titleClass, 
       className="modal_dialog flex flex-col bg-white border-solid border-2 border-black/50 rounded p-6 h-100 w-100"
       role="dialog"
       aria-modal="true"
+      aria-label={title}
       ref={modalRef}
     >
       <header className="modal_header flex flex-row justify-between flex-nowrap justify-items-start">
         {title && <h2 className={titleClass && titleClass}>{title}</h2>}
         <Button
-          type={LinkTypes.BUTTON}
-          href="/"
+          role={LinkTypes.BUTTON}
           className="py-4 px-4 -mt-4 -mr-4 flex justify-center items-center border-0"
           onClick={onClose}
+          onKeyDown={onClose}
         >
           <Image src="/assets/iconCloseButton.svg" height={24} width={24} alt="close modal button" />
         </Button>

@@ -1,5 +1,4 @@
 export interface CarouselProps {
-  // slideArray: SlideProps[];
   slideArray: SlideContentProps[];
 }
 
@@ -15,4 +14,5 @@ export interface SlideContentProps {
   subtitle?: string;
   image?: string;
   id?: string;
+  className?: string;
 }

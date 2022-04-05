@@ -1,7 +1,5 @@
 import { ComponentStory, Meta } from '@storybook/react';
-import ListItem from '../ListItem';
 import { Carousel } from './Carousel';
-import { CarouselSlide } from './CarouselSlide';
 
 export default {
   title: 'Components/Carousel',
@@ -29,52 +27,41 @@ const carouselData = [
   {
     image: 'https://via.placeholder.com/150x150',
     caption: 'placeholder 1',
-    title: 'Short heading',
+    title: '1 Short heading',
     subtitle:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     image: 'https://via.placeholder.com/150x150',
     caption: 'placeholder 2',
-    title: 'A bit longer heading',
-    subtitle:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    title: '2 A bit longer heading',
+    subtitle: 'Amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     image: 'https://via.placeholder.com/150x150',
     caption: 'placeholder 3',
-    title: 'An really, really long heading to check for word wrapping and stuff',
-    subtitle:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    title: '3 An really, really long heading to check for word wrapping, stuff, and things',
+    subtitle: 'Sit amet, consectetur adipiscing elit',
+  },
+  {
+    image: 'https://via.placeholder.com/150x150',
+    caption: 'placeholder 4',
+    title: '4 Short heading again',
+    subtitle: 'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  },
+  {
+    image: 'https://via.placeholder.com/150x150',
+    caption: 'placeholder 5',
+    title: '5 Medium length heading so we can see the word wrapping',
+    subtitle: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
 ];
 
-// create slides for carousel
-const createSlides = carouselData.map((item, index) => (
-  <CarouselSlide
-    id={`slide-${index}`}
-    key={`${item.title}-${index}`}
-    image={item.image}
-    title={item.title}
-    subtitle={item.subtitle}
-  />
-));
-
-// story template to display a single slide
-const slideTemplate: ComponentStory<typeof CarouselSlide> = (args) => <CarouselSlide {...args} />;
-
 // add slides to carousel story template
-// const carouselTemplate: ComponentStory<typeof Carousel> = (args) => <Carousel {...args}>{createSlides}</Carousel>;
+const carouselTemplate: ComponentStory<typeof Carousel> = (args) => <Carousel {...args} />;
 
 // Default Carousel story
-export const CarouselSlidePrimary = slideTemplate.bind({});
-CarouselSlidePrimary.args = {
-  // createSlides,
-  children: createSlides,
+export const CarouselPrimary = carouselTemplate.bind({});
+CarouselPrimary.args = {
+  slideArray: carouselData,
 };
-
-// Default Carousel story
-// export const CarouselPrimary = carouselTemplate.bind({});
-// CarouselPrimary.args = {
-//   createSlides,
-// };

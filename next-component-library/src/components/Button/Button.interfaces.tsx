@@ -2,6 +2,7 @@ import { DOMAttributes, KeyboardEventHandler, MouseEventHandler } from 'react';
 
 export enum LinkTypes {
   BUTTON = 'button',
+  BUTTONPIP = 'buttonPip',
   LINK = 'link',
 }
 
@@ -18,6 +19,7 @@ export enum IconTypes {
 export default interface ButtonProps extends DOMAttributes<HTMLButtonElement> {
   onClick: MouseEventHandler<HTMLButtonElement>;
   onKeyDown: KeyboardEventHandler<HTMLButtonElement>;
+  role: LinkTypes;
   iconType?: IconTypes;
   className?: string;
   disabled?: boolean;
