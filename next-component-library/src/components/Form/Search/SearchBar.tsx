@@ -3,7 +3,7 @@ import { Button } from '../../Button/Button';
 import { LinkTypes } from '../../Button/Button.interfaces';
 import { SearchProps } from './SearchBar.interfaces';
 
-const SearchBar: React.FC<SearchProps> = ({ addLabelAbove = false, label, placeholder = label }) => {
+const SearchBar: React.FC<SearchProps> = ({ addLabelAbove = false, label, placeholder = label, data }) => {
   return (
     <form action="/" method="get">
       <label htmlFor="search w-full">
