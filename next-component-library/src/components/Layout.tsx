@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { transformDataToPaginationHtml } from '../../utils/sample-data';
 import { Modal } from './Modal/Modal';
 import { LinkComponent as Link } from './Link/Link';
-import { AccordionItem } from './Accordion/AccordionItem';
+import { AccordionItem } from './Accordion/AccordionSection';
 import { AccordionWrapper } from './Accordion/AccordionWrapper';
 import { Pagination } from './Pagination/Pagination';
 
