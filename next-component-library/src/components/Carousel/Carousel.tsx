@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Button } from '../Button/Button';
 import { CarouselProps } from './Carousel.interfaces';
 import { CarouselSlide } from './CarouselSlide';
@@ -28,6 +27,11 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
 
   // build carousel navigation by creating a pip button for each index in the buildSlides array
   const carouselNav = buildSlides.map((arrayItem, index) => {
+    const pipIconToggle =
+      currentSlide === index
+        ? "bg-[url('../../public/assets/iconCircleFilled.svg')]"
+        : "bg-[url('../../public/assets/iconCircleUnfilled.svg')]";
+
     return (
       <Button
         role={LinkTypes.BUTTONPIP}
@@ -35,29 +39,8 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
         key={`nav-${index}`}
         onClick={goToSlide}
         onKeyDown={goToSlide}
-      >
-        {currentSlide === index ? (
-          // Display filled-in circle pip if slide is active
-          <Image
-            className="button-pip active"
-            width="24"
-            height="24"
-            src="/assets/iconCircleFilled.svg"
-            alt="Viewing current slide"
-            aria-current="true"
-          />
-        ) : (
-          // Display empty outlined circle pip is slide is not active
-          <Image
-            className="button-pip hover:rounded-3xl hover:bg-gray-400"
-            width="24"
-            height="24"
-            src="/assets/iconCircleUnfilled.svg"
-            alt={`View slide ${index + 1}`}
-            aria-current="false"
-          />
-        )}
-      </Button>
+        className={`${pipIconToggle} bg-no-repeat m-3 w-6`}
+      />
     );
   });
 

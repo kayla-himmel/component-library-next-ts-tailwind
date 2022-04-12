@@ -8,6 +8,10 @@ module.exports = {
       rotate: {
         270: '270deg',
       },
+      backgroundImage: {
+        'bg-img-carousel-pip-filled': "url('/public/assets/iconCircleFilled.svg')",
+        'bg-img-carousel-pip-unfilled': "url('/public/assets/iconCircleUnfilled.svg')",
+      },
     },
   },
   plugins: [],
