@@ -1,11 +1,10 @@
 import { A11yText } from '../components/A11yText/A11yText';
-import Layout from '../components/Layout';
 import { Button } from '../components/Button/Button';
 
 const alertText = "I'm a button";
 const IndexPage = () => (
   <>
-    <Layout title="Home | Next.js + TypeScript Example">
+    <div>
       <h1 className="text-3xl font-bold underline">Hello Next.js 👋</h1>
       {/* Button example */}
       <Button
@@ -16,7 +15,7 @@ const IndexPage = () => (
       >
         <A11yText srText={alertText} visualText={alertText} />
       </Button>
-    </Layout>
+    </div>
     <div id="modal-root"></div>
   </>
 );

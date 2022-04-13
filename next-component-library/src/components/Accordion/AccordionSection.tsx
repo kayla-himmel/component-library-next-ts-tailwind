@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { AccordionProps } from './Accordion.interfaces';
 import { Button } from '../Button/Button';
@@ -35,7 +35,7 @@ export const AccordionSection: React.FC<AccordionProps> = ({ title, content }) =
   return (
     <section className="flex flex-col">
       <Button
-        className="py-6 pl-0 pr-0 border-white grid grid-cols-8 md:grid-cols-12 gap-3 items-center justify-between"
+        className="py-6 px-0 border-white grid grid-cols-8 md:grid-cols-12 gap-3 items-center justify-between"
         onClick={toggleAccordion}
         onKeyDown={toggleAccordion}
         aria-expanded={active}

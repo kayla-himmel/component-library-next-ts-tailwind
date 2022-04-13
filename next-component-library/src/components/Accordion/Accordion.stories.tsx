@@ -6,7 +6,58 @@ import { AccordionWrapper } from './AccordionWrapper';
 export default {
   title: 'Components/Accordion',
   component: AccordionSection,
-  argTypes: {},
+  argTypes: {
+    $$typeof: {
+      table: {
+        disable: true,
+      },
+    },
+    type: {
+      table: {
+        disable: true,
+      },
+    },
+    key: {
+      table: {
+        disable: true,
+      },
+    },
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
+    props: {
+      table: {
+        disable: true,
+      },
+    },
+    _owner: {
+      table: {
+        disable: true,
+      },
+    },
+    _store: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
+    content: {
+      table: {
+        disable: true,
+      },
+    },
+    mapChildren: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta;
 
 const contentP = (
