@@ -69,7 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     if (createRange(minPage, maxPage).includes(pageNumber)) {
       return (
         <Button
-          data-id={`page-${pageNumber}`}
+          id={`page-${pageNumber}`}
           key={`page-${pageNumber}`}
           className={
             pageNumber === currentPage

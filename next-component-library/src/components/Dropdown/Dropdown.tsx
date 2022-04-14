@@ -7,13 +7,16 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
   const [isOpen, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  // set the dropdown to open or closed
   const toggleDropdown = () => setOpen(!isOpen);
 
+  // set option as selected when clicked or spacebar is pressed on focus and close dropdown
   const handleItemClick = (id, item) => {
     selectedItem === item ? setSelectedItem(null) : setSelectedItem(item);
     setOpen(false);
   };
 
+  // style logic for open (270*) and closed (90*) view of button in dropdown
   const chevronButtonClass = `rotate-270 ${isOpen && 'rotate-90'}`;
 
   return (

@@ -10,10 +10,12 @@ export const Modal: React.FC<ModalProps> = ({ title, titleClass, buttonRef, root
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // close the modal
   const closeModal = useCallback(() => {
     setShowModal(false);
   }, [setShowModal]);
 
+  // open the modal
   const openModal = useCallback(() => {
     setShowModal(true);
   }, [setShowModal]);
@@ -82,7 +84,7 @@ export const Modal: React.FC<ModalProps> = ({ title, titleClass, buttonRef, root
     </div>
   ) : null;
 
-  // create portal to display modal
+  // create DOM portal to display modal
   if (isBrowser) {
     return ReactDOM.createPortal(
       <div
