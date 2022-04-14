@@ -48,7 +48,7 @@ const Dropdown: React.FC<DropdownProps> = ({ data, title }) => {
                     }`}
                     onClick={(e) => handleItemClick(e.currentTarget.id, item)}
                     onKeyDown={(e) => handleItemClick(e.currentTarget.id, item)}
-                    data-id={item.id as string}
+                    id={item.id as string}
                     data-parent-id={title}
                   >
                     {item.label}

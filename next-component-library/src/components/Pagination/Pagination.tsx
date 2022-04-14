@@ -65,6 +65,10 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
       }
       return range;
     }
+    // click event logic for actual page number buttons
+    function goToPage() {
+      setCurrentPage(pageNumber);
+    }
 
     if (createRange(minPage, maxPage).includes(pageNumber)) {
       return (
@@ -95,12 +99,6 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
     setCurrentPage(currentPage + 2);
   }
 
-  // click event logic for actual page number buttons
-  function goToPage(event) {
-    const newPage = parseInt(event.target.id);
-    setCurrentPage(newPage);
-  }
-
   // click event logic for Previous button
   function goToPrevious() {
     setCurrentPage(currentPage - 1);
@@ -119,7 +117,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
         <div className="pagination-wrapper flex justify-center mt-8">
           <nav className="pagination-nav flex justify-between items-center space-x-1 sm:w-96">
             {/* Previous "<" button */}
-            <Button data-id="previousPage" onClick={goToPrevious} onKeyDown={goToPrevious} disabled={currentPage === 1}>
+            <Button id="previousPage" onClick={goToPrevious} onKeyDown={goToPrevious} disabled={currentPage === 1}>
               <Image
                 className="button-previous"
                 width="20"
@@ -132,7 +130,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               {/* Left Ellipsis "..." button */}
               {currentPage >= pageNumberLimit && (
                 <Button
-                  data-id="goBackTwoPages"
+                  id="goBackTwoPages"
                   className={ellipsisClass}
                   onClick={showPastPageIncrement}
                   onKeyDown={showPastPageIncrement}
@@ -147,7 +145,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
                 currentPage !== createArrayOfArrays.length &&
                 currentPage !== createArrayOfArrays.length - 1 && (
                   <Button
-                    data-id="goForwardTwoPages"
+                    id="goForwardTwoPages"
                     className={ellipsisClass}
                     onClick={showNextPageIncrement}
                     onKeyDown={showNextPageIncrement}
@@ -158,7 +156,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
             </div>
             {/* Next ">" button */}
             <Button
-              data-id="nextPage"
+              id="nextPage"
               onClick={goToNext}
               onKeyDown={goToNext}
               disabled={currentPage === createArrayOfArrays.length}

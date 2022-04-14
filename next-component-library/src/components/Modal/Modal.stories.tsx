@@ -41,7 +41,7 @@ const Template: ComponentStoryFn<typeof Modal> = () => {
 
   return (
     <>
-      <Button data-id="openModal" ref={modalButtonRef}>
+      <Button id="openModal" ref={modalButtonRef}>
         Open Modal
       </Button>
       <Modal buttonRef={modalButtonRef} rootDivRef={rootElementRef} title="Modal Header">

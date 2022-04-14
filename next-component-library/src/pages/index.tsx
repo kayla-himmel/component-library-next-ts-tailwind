@@ -8,7 +8,7 @@ const IndexPage = () => (
       <h1 className="text-3xl font-bold underline">Hello Next.js 👋</h1>
       {/* Button example */}
       <Button
-        data-id="alertPopup"
+        id="alertPopup"
         onClick={() => alert('hey!')}
         onKeyDown={() => alert('hey!')}
         className="bg-gray-300 p-4 border-black"
