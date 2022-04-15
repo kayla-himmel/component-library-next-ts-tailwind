@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'react';
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
-  show: boolean;
-  onClose: () => void;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+  rootDivRef: React.RefObject<HTMLDivElement>;
   title?: string;
   titleClass?: string;
 }
