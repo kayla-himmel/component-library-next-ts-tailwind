@@ -18,7 +18,7 @@ interface MockDataType {
 }
 
 // returns array with the html for each object--very specific to the pageMockData
-export const transformDataToHtml = () => {
+export const transformDataToPaginationHtml = () => {
   const cardArray = [];
 
   pageMockData.map((item, index) => {

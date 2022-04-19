@@ -28,17 +28,7 @@ export default {
         disable: true,
       },
     },
-    'data-id': {
-      table: {
-        disable: true,
-      },
-    },
     children: {
-      table: {
-        disable: true,
-      },
-    },
-    disabled: {
       table: {
         disable: true,
       },
@@ -61,7 +51,14 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 // Text button example in Storybook
 export const ButtonWithText = Template.bind({});
 ButtonWithText.args = {
-  children: 'Click Me',
+  children: 'Default button with text',
+};
+
+// Disabled state of text button example in Storybook
+export const ButtonWithTextDisabledState = Template.bind({});
+ButtonWithTextDisabledState.args = {
+  children: 'Button in disabled state',
+  disabled: true,
 };
 
 // Text & icon button example in Storybook

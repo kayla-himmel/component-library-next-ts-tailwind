@@ -11,6 +11,46 @@ export default {
         disable: true,
       },
     },
+    as: {
+      table: {
+        disable: true,
+      },
+    },
+    replace: {
+      table: {
+        disable: true,
+      },
+    },
+    scroll: {
+      table: {
+        disable: true,
+      },
+    },
+    shallow: {
+      table: {
+        disable: true,
+      },
+    },
+    passHref: {
+      table: {
+        disable: true,
+      },
+    },
+    prefetch: {
+      table: {
+        disable: true,
+      },
+    },
+    locale: {
+      table: {
+        disable: true,
+      },
+    },
+    href: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
@@ -19,6 +59,14 @@ const Template: ComponentStory<typeof LinkComponent> = (args) => <LinkComponent 
 // Link example in Storybook
 export const Link = Template.bind({});
 Link.args = {
-  children: 'Click to learn more',
+  children: 'Click link to learn more',
+  href: '/about',
+};
+
+// Link example in Storybook
+export const LinkStyledAsButton = Template.bind({});
+LinkStyledAsButton.args = {
+  children: 'Click this link that looks like a button',
+  styleAs: 'button',
   href: '/about',
 };

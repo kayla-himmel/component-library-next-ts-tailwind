@@ -1,13 +1,43 @@
 import React from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
-import { AccordionItem } from './AccordionItem';
+import { AccordionSection } from './AccordionSection';
 import { AccordionWrapper } from './AccordionWrapper';
 
 export default {
   title: 'Components/Accordion',
-  component: AccordionItem,
+  component: AccordionSection,
   argTypes: {
-    mapChildren: {
+    $$typeof: {
+      table: {
+        disable: true,
+      },
+    },
+    type: {
+      table: {
+        disable: true,
+      },
+    },
+    key: {
+      table: {
+        disable: true,
+      },
+    },
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
+    props: {
+      table: {
+        disable: true,
+      },
+    },
+    _owner: {
+      table: {
+        disable: true,
+      },
+    },
+    _store: {
       table: {
         disable: true,
       },
@@ -22,7 +52,7 @@ export default {
         disable: true,
       },
     },
-    key: {
+    mapChildren: {
       table: {
         disable: true,
       },
@@ -61,7 +91,7 @@ const accordionData = [
 ];
 
 const mapChildren = accordionData.map((item, index) => (
-  <AccordionItem key={`${item.title}-${index}`} title={item.title} content={item.content} />
+  <AccordionSection key={`${item.title}-${index}`} title={item.title} content={item.content} />
 ));
 
 const SingleItemTemplate: ComponentStoryFn<typeof AccordionWrapper> = (args) => {
@@ -74,7 +104,7 @@ const MultiItemTemplate: ComponentStoryFn<typeof AccordionWrapper> = () => {
 
 export const AccordionWithOneSection = SingleItemTemplate.bind({});
 AccordionWithOneSection.args = {
-  ...(<AccordionItem title="Accordion with 1 Section" content={contentP} />),
+  ...(<AccordionSection title="Accordion with 1 Section" content={contentP} />),
 };
 
 export const AccordionWithTwoSections = MultiItemTemplate.bind({});

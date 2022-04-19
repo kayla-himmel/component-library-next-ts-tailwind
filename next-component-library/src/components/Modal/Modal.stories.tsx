@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { Modal } from './Modal';
 import { Button } from '../Button/Button';
-import { LinkTypes } from '../Button/Button.interfaces';
 
 export default {
   title: 'Components/Modal',
@@ -13,12 +12,12 @@ export default {
         disable: true,
       },
     },
-    onClose: {
+    buttonRef: {
       table: {
         disable: true,
       },
     },
-    show: {
+    rootDivRef: {
       table: {
         disable: true,
       },
@@ -37,14 +36,15 @@ export default {
 } as Meta;
 
 const Template: ComponentStoryFn<typeof Modal> = () => {
-  const [showModal, setShowModal] = useState(false);
+  const modalButtonRef = useRef<HTMLButtonElement>(null);
+  const rootElementRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)} onKeyDown={() => setShowModal(true)}>
+      <Button id="openModal" ref={modalButtonRef}>
         Open Modal
       </Button>
-      <Modal onClose={() => setShowModal(false)} show={showModal} title="Modal Header">
+      <Modal buttonRef={modalButtonRef} rootDivRef={rootElementRef} title="Modal Header">
         <div>
           <h3>Modal Body</h3>
           <p>
@@ -56,7 +56,7 @@ const Template: ComponentStoryFn<typeof Modal> = () => {
           </p>
         </div>
       </Modal>
-      <div id="modal-root"></div>
+      <div ref={rootElementRef}></div>
     </>
   );
 };

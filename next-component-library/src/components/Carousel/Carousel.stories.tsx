@@ -28,6 +28,7 @@ const carouselData = [
     image: 'https://via.placeholder.com/150x150',
     caption: 'placeholder 1',
     title: '1 Short heading',
+
     subtitle:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
