@@ -1,17 +1,15 @@
-import { Button } from '../components/Button/Button';
-import { LinkTypes } from '../components/Button/Button.interfaces';
-import Layout from '../components/Layout';
+import { LinkComponent as Link } from '../components/Link/Link';
 
 const AboutPage = () => (
-  <Layout title="About | Next.js + TypeScript Example">
+  <div>
     <h1>About</h1>
     <p>This is the about page</p>
     <p>
-      <Button type={LinkTypes.LINK} href="/">
+      <Link href="/">
         <a>Go home</a>
-      </Button>
+      </Link>
     </p>
-  </Layout>
+  </div>
 );
 
 export default AboutPage;
