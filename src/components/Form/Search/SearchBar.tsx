@@ -1,9 +1,15 @@
 import React from 'react';
 import { Button } from '../../Button/Button';
-import { LinkTypes } from '../../Button/Button.interfaces';
 import { SearchProps } from './SearchBar.interfaces';
 
-const SearchBar: React.FC<SearchProps> = ({ addLabelAbove = false, label, placeholder = label, data }) => {
+const SearchBar: React.FC<SearchProps> = ({
+  addLabelAbove = false,
+  label,
+  placeholder = label,
+  onClick,
+  onChange,
+  value,
+}) => {
   return (
     <form action="/" method="get">
       <label htmlFor="search w-full">
@@ -14,10 +20,14 @@ const SearchBar: React.FC<SearchProps> = ({ addLabelAbove = false, label, placeh
         type="text"
         id="search"
         placeholder={placeholder && placeholder}
-        name="s"
+        name="search"
         className="p-2 mr-1 border rounded"
+        onChange={onChange}
+        value={value}
       />
-      <Button type={LinkTypes.SUBMIT}>Search</Button>
+      <Button type="submit" onClick={onClick}>
+        Search
+      </Button>
     </form>
   );
 };

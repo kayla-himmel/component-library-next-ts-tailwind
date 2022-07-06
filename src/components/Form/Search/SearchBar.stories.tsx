@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, Meta } from '@storybook/react';
 import SearchBar from './SearchBar';
 
@@ -30,17 +30,18 @@ const Template: ComponentStory<typeof SearchBar> = (args) => {
   };
 
   const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
+  const query = new URLSearchParams(search).get('search');
   const filteredPosts = filterPosts(data, query);
 
   return (
     <div>
       <SearchBar {...args} />
-      );
       <ul>
-        {filteredPosts.map((post) => (
-          <li key={post.id}>{post.name}</li>
-        ))}
+        {filteredPosts.length === 0 ? (
+          <li>No match found</li>
+        ) : (
+          filteredPosts.map((post) => <li key={post.id}>{post.name}</li>)
+        )}
       </ul>
     </div>
   );
