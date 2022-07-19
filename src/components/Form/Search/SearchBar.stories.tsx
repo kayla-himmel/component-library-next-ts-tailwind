@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ComponentStory, Meta } from '@storybook/react';
 import SearchBar from './SearchBar';
 
