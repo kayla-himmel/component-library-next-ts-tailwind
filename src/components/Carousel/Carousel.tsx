@@ -39,7 +39,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
         key={`nav-${index}`}
         onClick={goToSlide}
         onKeyDown={goToSlide}
-        className={`${pipIconToggle} bg-no-repeat pr-0 pb-0 w-6 h-6 border-none`}
+        className={`${pipIconToggle} bg-no-repeat pr-0 pb-0 w-6 h-6 border-none hover:rounded-xl hover:bg-gray-300`}
       />
     );
   });

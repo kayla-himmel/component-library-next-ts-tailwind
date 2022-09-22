@@ -60,7 +60,7 @@ const carouselData = [
 
 // add slides to carousel story template
 const carouselTemplate: ComponentStory<typeof Carousel> = (args) => (
-  <div className="mx-auto">
+  <div className="flex justify-center">
     <Carousel {...args} />
   </div>
 );
