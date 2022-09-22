@@ -59,7 +59,11 @@ const carouselData = [
 ];
 
 // add slides to carousel story template
-const carouselTemplate: ComponentStory<typeof Carousel> = (args) => <Carousel {...args} />;
+const carouselTemplate: ComponentStory<typeof Carousel> = (args) => (
+  <div className="mx-auto">
+    <Carousel {...args} />
+  </div>
+);
 
 // Default Carousel story
 export const CarouselPrimary = carouselTemplate.bind({});

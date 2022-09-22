@@ -28,17 +28,18 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
   const carouselNav = buildSlides.map((arrayItem, index) => {
     const pipIconToggle =
       currentSlide === index
-        ? "bg-[url('../../public/assets/iconCircleFilled.svg')]"
+        ? "bg-[url('../../public/assets/iconCircleFilled.svg')] px-5 py-5"
         : "bg-[url('../../public/assets/iconCircleUnfilled.svg')]";
 
     return (
       <Button
         type="button"
+        typeof="icon"
         data-id={`slide-${index}`}
         key={`nav-${index}`}
         onClick={goToSlide}
         onKeyDown={goToSlide}
-        className={`${pipIconToggle} bg-no-repeat m-3 w-6`}
+        className={`${pipIconToggle} bg-no-repeat pr-0 pb-0 w-6 h-6 border-none`}
       />
     );
   });
@@ -53,11 +54,11 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
   // add slide animation in/out (add red outline)
 
   return (
-    <div className="carousel-wrapper" aria-label="carousel">
+    <div className="carousel-wrapper max-w-3xl" aria-label="carousel">
       {/* Actual slides */}
       <div className="carousel-slide__container">{buildSlides}</div>
       {/* Carousel Navigation */}
-      <nav className="carousel-nav flex justify-center mt-6">{carouselNav}</nav>
+      <nav className="carousel-nav flex justify-center mt-6 md:mt-10 space-x-5">{carouselNav}</nav>
     </div>
   );
 };
