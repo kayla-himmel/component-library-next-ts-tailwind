@@ -13,6 +13,7 @@ export interface SlideContentProps {
   title?: string;
   subtitle?: string;
   image?: string;
+  alt?: string;
   id?: string;
   className?: string;
 }

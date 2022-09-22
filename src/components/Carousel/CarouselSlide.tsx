@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { SlideContentProps } from './Carousel.interfaces';
 
-export const CarouselSlide: React.FC<SlideContentProps> = ({ title, subtitle, image, className }) => {
+export const CarouselSlide: React.FC<SlideContentProps> = ({ title, subtitle, image, alt, className }) => {
   // the content of the current section when open
   const slideRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +15,7 @@ export const CarouselSlide: React.FC<SlideContentProps> = ({ title, subtitle, im
           height="1200"
           layout="intrinsic"
           src={image}
-          alt="Background image of current slide"
+          alt={alt}
         />
       ) : (
         <div className="carousel-slide--bg bg-gray-300 z-0" />
