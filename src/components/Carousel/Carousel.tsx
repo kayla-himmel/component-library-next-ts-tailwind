@@ -13,14 +13,15 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     const activeClass = currentSlide === index ? 'active grid' : 'hidden';
 
     return (
-      <CarouselSlide
-        className={activeClass}
-        id={`slide-${index}`}
-        key={`slide-${index}`}
-        {...item}
-        aria-hidden={!currentSlide}
-        aria-label={`slide ${index + 1} of ${slideArray.length + 1}`}
-      />
+      <li key={`slide-${index}`}>
+        <CarouselSlide
+          className={`${activeClass}`}
+          id={`slide-${index}`}
+          {...item}
+          aria-hidden={!currentSlide}
+          aria-label={`slide ${index + 1} of ${slideArray.length + 1}`}
+        />
+      </li>
     );
   });
 
@@ -50,14 +51,28 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     setCurrentSlide(newSlide);
   }
 
-  // determine which slide is active
-  // add slide animation in/out (add red outline)
+  const slideButtonStyle = 'pt-1 pb-5 border-none bg-no-repeat';
 
   return (
-    <div className="carousel-wrapper max-w-3xl" aria-label="carousel">
+    <div className="carousel-wrapper flex flex-col max-w-3xl relative" aria-label="carousel">
+      {/* Prev/Next buttons */}
+      <div className="carousel-slide__buttons flex justify-between w-full z-10 absolute top-80">
+        {/* Previous slide button */}
+        <Button
+          className={`${slideButtonStyle} bg-[url('../../public/assets/iconChevronSign.svg')] pr-5 pl-0 inset-x-5 rotate-180`}
+          onClick={goToSlide}
+          onKeyDown={goToSlide}
+        />
+        {/* Next slide button */}
+        <Button
+          className={`${slideButtonStyle} bg-[url('../../public/assets/iconChevronSign.svg')] pl-5 pr-0 inset-x-5`}
+          onClick={goToSlide}
+          onKeyDown={goToSlide}
+        />
+      </div>
       {/* Actual slides */}
-      <div className="carousel-slide__container">{buildSlides}</div>
-      {/* Carousel Navigation */}
+      <ul className="carousel-slide__container">{buildSlides}</ul>
+      {/* Carousel Pip Navigation */}
       <nav className="carousel-nav flex justify-center mt-6 md:mt-10 space-x-5">{carouselNav}</nav>
     </div>
   );
