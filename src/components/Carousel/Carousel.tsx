@@ -6,14 +6,13 @@ import { CarouselSlide } from './CarouselSlide';
 export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
   // set first index of the slideArray as the currentSlide
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-
   // build each slide and display in .carousel-wrapper div
   const buildSlides = slideArray.map((item, index) => {
     // add class to active slide
     const activeClass = currentSlide === index ? 'active grid' : 'hidden';
 
     return (
-      <li key={`slide-${index}`}>
+      <li key={`slide-${index}`} id={`slide-${index}`}>
         <CarouselSlide
           className={`${activeClass}`}
           id={`slide-${index}`}
@@ -45,12 +44,32 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
     );
   });
 
-  // click event logic for nav to specific slides using the pip (dots) buttons
+  // Pip (dots) navigation click event logic for nav to specific slides
   function goToSlide(event) {
     const newSlide = parseInt(event.target.getAttribute('data-id')?.split('-')[1]);
     setCurrentSlide(newSlide);
   }
 
+  // Next button click event logic
+  function goToNextSlide() {
+    // loop the carousel around if the last slide is the currentSlide
+    if (currentSlide === 4) {
+      return setCurrentSlide((currentSlide as number) - 4);
+    }
+    // show the next slide on click
+    return setCurrentSlide((currentSlide as number) + 1);
+  }
+  // Previous button click event logic
+  function goToPrevSlide() {
+    // loop the carousel around if the first slide is the currentSlide
+    if (currentSlide === 0) {
+      return setCurrentSlide((currentSlide as number) + 4);
+    }
+    // show the previous slide on click
+    return setCurrentSlide((currentSlide as number) - 1);
+  }
+
+  // Previous/Next button styling
   const slideButtonStyle = 'pt-1 pb-5 border-none bg-no-repeat';
 
   return (
@@ -60,18 +79,18 @@ export const Carousel: React.FC<CarouselProps> = ({ slideArray }) => {
         {/* Previous slide button */}
         <Button
           className={`${slideButtonStyle} bg-[url('../../public/assets/iconChevronSign.svg')] pr-5 pl-0 inset-x-5 rotate-180`}
-          onClick={goToSlide}
-          onKeyDown={goToSlide}
+          onClick={goToPrevSlide}
+          onKeyDown={goToPrevSlide}
         />
         {/* Next slide button */}
         <Button
           className={`${slideButtonStyle} bg-[url('../../public/assets/iconChevronSign.svg')] pl-5 pr-0 inset-x-5`}
-          onClick={goToSlide}
-          onKeyDown={goToSlide}
+          onClick={goToNextSlide}
+          onKeyDown={goToNextSlide}
         />
       </div>
       {/* Actual slides */}
-      <ul className="carousel-slide__container">{buildSlides}</ul>
+      <ul className="carousel-slide__container px-8">{buildSlides}</ul>
       {/* Carousel Pip Navigation */}
       <nav className="carousel-nav flex justify-center mt-6 md:mt-10 space-x-5">{carouselNav}</nav>
     </div>
