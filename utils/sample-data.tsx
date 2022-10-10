@@ -19,18 +19,18 @@ interface MockDataType {
 
 // returns array with the html for each object--very specific to the pageMockData
 export const transformDataToPaginationHtml = () => {
-  const newItemArray = [];
+  const cardArray = [];
 
   pageMockData.map((item, index) => {
-    const newItem = (
+    const buildCard = (
       <div className="card-wrapper flex flex-col items-center" key={index}>
         <Image src={item.image} alt={item.caption} height={150} width={150} />
         <p>{item.caption}</p>
       </div>
     );
-    newItemArray.push(newItem);
+    cardArray.push(buildCard);
   });
-  return newItemArray as [];
+  return cardArray as [];
 };
 
 export const pageMockData: MockDataType[] = [

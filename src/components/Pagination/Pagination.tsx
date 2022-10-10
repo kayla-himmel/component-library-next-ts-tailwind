@@ -160,6 +160,7 @@ export const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, dataArray,
               onClick={goToNext}
               onKeyDown={goToNext}
               disabled={currentPage === createArrayOfArrays.length}
+              aria-disabled={currentPage === createArrayOfArrays.length}
             >
               <Image
                 className="button-previous rotate-180"

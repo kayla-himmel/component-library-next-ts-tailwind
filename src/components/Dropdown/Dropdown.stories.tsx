@@ -6,6 +6,18 @@ import { DropdownData } from './Dropdown.interfaces';
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
+  argTypes: {
+    data: {
+      table: {
+        disable: true,
+      },
+    },
+    title: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta;
 
 const sampleDropdownData: DropdownData[] = [
