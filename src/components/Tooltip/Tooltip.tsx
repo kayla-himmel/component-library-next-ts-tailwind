@@ -4,7 +4,7 @@ import KEYBOARD_KEYS from '../../constants/keys.constants';
 import { Button } from '../Button/Button';
 import { TooltipComponentProps } from './Tooltip.interfaces';
 
-export const Tooltip: React.FC<TooltipComponentProps> = ({ id }: TooltipComponentProps) => {
+export const Tooltip: React.FC<TooltipComponentProps> = ({ id, children }: TooltipComponentProps) => {
   const [show, setShow] = useState(false);
   const target = useRef(null);
 
@@ -31,10 +31,12 @@ export const Tooltip: React.FC<TooltipComponentProps> = ({ id }: TooltipComponen
   return (
     <div className="tooltip">
       {/* button to open the tooltip */}
-      <Button ref={target} onClick={handleClick} onBlur={() => setShow(false)} data-testid={`tooltip-${formattedID}`} />
+      <Button ref={target} onClick={handleClick} onBlur={() => setShow(false)} data-testid={`tooltip-${formattedID}`}>
+        Open tooltip
+      </Button>
 
       {/* tooltip with overlay */}
-      <div>Tooltip content</div>
+      <p>{children}</p>
     </div>
   );
 };

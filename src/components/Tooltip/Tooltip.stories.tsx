@@ -34,15 +34,12 @@ export default {
   },
 } as Meta;
 
-const Template: ComponentStoryFn<typeof Tooltip> = () => {
-  return (
-    <>
-      <Tooltip id="tooltip">
-        <p>Tooltip text here...click anywhere outside the tooltip or hit escape to hide the tooltip</p>
-      </Tooltip>
-    </>
-  );
-};
+const Template: ComponentStoryFn<typeof Tooltip> = (args) => <Tooltip {...args} />;
 
-// Tooltip example in Storybook
-export const TooltipPrimary = Template.bind({});
+// Tooltip embeded in text
+export const TooltipInText = Template.bind({});
+TooltipInText.args = {
+  children: 'Tooltip text here...click anywhere outside the tooltip or hit escape to hide the tooltip',
+  styleAs: 'text',
+  id: 'tooltipText',
+};
