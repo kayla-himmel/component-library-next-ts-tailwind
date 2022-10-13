@@ -18,5 +18,9 @@
     "markdown",
     "css",
     "scss"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#fff",
+    "titleBar.activeBackground": "#621cac",
+  }
 }
