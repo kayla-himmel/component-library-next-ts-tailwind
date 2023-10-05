@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-storybook": "^0.5.12",
-    "postcss": "^8.4.6",
+    "postcss": "^8.4.31",
     "postcss-preset-env": "^7.4.1",
     "prettier": "^2.5.1",
     "storybook-addon-next": "^1.6.6",
